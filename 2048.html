@@ -5,19 +5,13 @@
         my2048
     </title>
     <link type = "text/css" rel = "stylesheet" href="./style/base.css">
-    <script src="./javascript/2048.js"></script>
-    <script type="text/javascript" src="../modules/sea-debug.js">
+    <script type="text/javascript" src="./lib/sea-debug.js">
 
     </script>
     <style type='text/css'>
 
     </style>
-    <script type="text/javascript">
-        window.onload=function(){
-            my2048();
-        };
 
-    </script>
 </head>
 
 <body>
@@ -52,5 +46,21 @@
 </div>
 
 </body>
+<script type="text/javascript">
+    seajs.config({
+        base:"./javascript/sea-modules",
+        alias:{
+            "move":"2048move.js",
+            "2048All":"2048.js"
+        }
+    });
+    seajs.use("2048All",function(my2048){
+        window.onload=function(){
+            my2048.my2048();
+        };
+    });
+
+
+</script>
 </html>
 
