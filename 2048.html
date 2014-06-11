@@ -3,15 +3,18 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <title>my2048</title>
     <link type = "text/css" rel = "stylesheet" href="./lib/bootstrap-3.1.1-dist/css/bootstrap.css">
+    <link type = "text/css" rel = "stylesheet" href="./lib/pick-a-color1.2.3/css/pick-a-color-1.2.3.min.css">
     <link type = "text/css" rel = "stylesheet" href="./style/base.css">
-    <script type="text/javascript" src="./lib/sea-debug.js"></script>
-    <script type="text/javascript" src="./lib/jquery.1.11.1.js"></script>
-    <script type="text/javascript" src="./lib/bootstrap-3.1.1-dist/js/bootstrap.js"></script>
-    <style type='text/css'>
 
+
+    <style type='text/css'>
+        .row{
+            padding-top:5px;
+            padding-bottom: 5px;
+        }
     </style>
 
 </head>
@@ -20,10 +23,10 @@
 
 <div id="container">
     <div class="row">
-        <div class="col-md-1">xuhuiyuan</div>
+        <div class="col-md-1"></div>
 
         <div class="col-md-10">
-            haha
+            <h1>打造自己的2048！</h1>
         </div>
         <div class="col-md-1">mengying</div>
     </div>
@@ -68,6 +71,81 @@
 
                         <div class="panel-body">
 
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    选择规则：
+                                    <select id="strategy">
+                                        <option value="xu">许的规则</option>
+                                        <option value="meng">孟的规则</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    选择规则：
+                                    <select id="other">
+                                        <option value="xu">许的规则</option>
+                                        <option value="meng">孟的规则</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    选择背景颜色：
+                                    <input type="text" value="000" name="bgColor" id="bg-color"
+                                             class="pick-a-color form-control">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    选择边框样式：
+                                    <select id="border-style">
+                                        <option value="solid">solid</option>
+                                        <option value="inset">inset</option>
+                                        <option
+                                                value="dotted">dotted</option>
+                                        <option
+                                                value="dashed">dashed</option>
+                                        <option
+                                                value="double">double</option>
+                                        <option
+                                                value="groove">groove</option>
+                                        <option value="ridge">ridge</option>
+                                        <option
+                                                value="outset">outset</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    选择边框颜色：
+                                    <input type="text" value="000"
+                                           name="borderColor" id="border-color" class="pick-a-color form-control">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    选择边框宽度：
+                                    <select id="border-width">
+                                        <option value="thin">thin</option>
+                                        <option
+                                                value="medium">medium</option>
+                                        <option value="thick">thick</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-12">
+
+                                    <button type="button" class="btn btn-
+default" id="start">启动</button>
+                                    <button type="button" class="btn btn-
+default" data-toggle="modal" data-target="#resetModal" id="reset">恢复默认
+                                    </button>
+
+                                </div>
+                            </div>
+
                         </div>
                         <div class="panel-footer">谢谢</div>
                     </div>
@@ -85,10 +163,61 @@
         </div>
         <div class="col-md-1">mengying</div>
     </div>
+    <div class="modal" id="resetModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-
+                            dismiss="modal">
+                        &times;
+                    </button>
+                    <h4 class="modal-title">my 2048</h4>
+                </div>
+                <div class="modal-body">
+                    <span>是否恢复到默认设置</span>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" >
+                        是
+                    </button>
+                    <button type="button" class="btn btn-default" >
+                        否
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="tipModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">my 2048</h4>
+                </div>
+                <div class="modal-body">
+                    <span>2048游戏，马上开始！</span>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-
+                            dismiss="modal">
+                        关闭
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 
 </body>
+<script type="text/javascript" src="./lib/jquery-1.9.1.min.js"></script>
+<script type="text/javascript" src="./lib/bootstrap-3.1.1-
+dist/js/bootstrap.js"></script>
+<script type="text/javascript" src="./lib/pick-a-color1.2.3/tinycolor-
+0.9.15.min.js"></script>
+<script type="text/javascript" src="./lib/pick-a-color1.2.3/js/pick-a-
+color-1.2.3.min.js"></script>
+<script type="text/javascript" src="./lib/sea-debug.js"></script>
 <script type="text/javascript">
+
     seajs.config({
         base:"./javascript/sea-modules",
         alias:{
@@ -100,10 +229,49 @@
     });
     seajs.use("2048All",function(my2048){
         window.onload=function(){
-            my2048.my2048();
+            $(".pick-a-color").pickAColor({
+                showSpectrum            : true,
+                showSavedColors         : true,
+                saveColorsPerElement    : true,
+                fadeMenuToggle          : true,
+                showAdvanced						:
+                        true,
+                showBasicColors         : true,
+                showHexInput            : true,
+                allowBlank
+                        : true,
+                inlineDropdown					: true
+            });
+
+            $("#bg-color").on("change",function(){
+                $("body").css("background-color","#"+$(this).val());
+            });
+            $("#border-color").on("change",function(){
+                $("table").css("border-color","#"+$(this).val());
+                $("td").css("border-color","#"+$(this).val());
+            });
+            $("#border-style").on("change",function(){
+                $("table").css("border-style",$(this).val());
+                $("td").css("border-style",$(this).val());
+            });
+             $("#border-width").on("change",function(){
+             $("table").css("border-width",$(this).val());
+             $("td").css("border-width",$(this).val());
+             });
+
+            $("#start").on("click",function(){
+                $("#tipModal").modal({
+                    backdrop:true,
+                    keyboard:true,
+                    show:true
+                });
+                var strategy =$("#strategy").val();
+                my2048.my2048(strategy);
+            });
+
+
         };
     });
-
 
 </script>
 </html>

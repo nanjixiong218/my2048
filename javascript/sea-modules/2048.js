@@ -6,7 +6,7 @@ define(function(require,exports,modules){
     var fill = require("fill");
     var newNum = require("getNewNumber");
 
-    function my2048(){
+    function my2048(strategy){
         var table = document.getElementsByTagName("table")[0];
         var t = [];//table对应的二维数组，其中记录了table对应位置的值，这样方便访问，不需要总访问dom
         var i=0;
@@ -20,10 +20,10 @@ define(function(require,exports,modules){
             var keycode = event.which?event.which:event.keyCode?event.keyCode:event.charCode;
 
             switch(keycode){
-                case 37:Strategy.get("meng").left(t);fill.fill(t,table);newNum.getNewNum(t,table);break;
-                case 38:Strategy.get("meng").up(t);fill.fill(t,table);newNum.getNewNum(t,table);break;
-                case 39:Strategy.get("meng").right(t);fill.fill(t,table);newNum.getNewNum(t,table);break;
-                case 40:Strategy.get("meng").down(t);fill.fill(t,table);newNum.getNewNum(t,table);break;
+                case 37:Strategy.get(strategy).left(t);fill.fill(t,table);newNum.getNewNum(t,table);break;
+                case 38:Strategy.get(strategy).up(t);fill.fill(t,table);newNum.getNewNum(t,table);break;
+                case 39:Strategy.get(strategy).right(t);fill.fill(t,table);newNum.getNewNum(t,table);break;
+                case 40:Strategy.get(strategy).down(t);fill.fill(t,table);newNum.getNewNum(t,table);break;
             }
         }
 
