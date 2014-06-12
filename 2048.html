@@ -273,7 +273,7 @@
 
                                 <div class="row">
                                     <div class="col-lg-12">
-                                        选择规则：
+                                        选择基本规则：
                                         <select id="strategy">
                                             <option value="xu">许的规则</option>
                                             <option value="meng">孟的规则</option>
@@ -282,7 +282,7 @@
                                 </div>
                                 <div class="row">
                                     <div class="col-lg-12">
-                                        基本主题选择：
+                                        选择基本主题：
                                         <select id="theme">
                                             <option value="num">原始数字</option>
                                             <option value="char">英文字母</option>
@@ -419,14 +419,15 @@
     seajs.config({
         base:"./javascript/sea-modules",
         alias:{
-            "move":"2048move.js",
+            "strategy":"2048move.js",
             "fill":"fill.js",
             "getNewNumber":"getNewNumber.js",
             "theme":"theme.js",
+            "config":"config.js",
             "2048All":"2048.js"
         }
     });
-    seajs.use("2048All",function(my2048){
+    seajs.use(["2048All","config"],function(my2048,config){
         window.onload=function(){
             $(".pick-a-color").pickAColor({
                 showSpectrum            : true,
@@ -467,8 +468,10 @@
                 }).on("hidden.bs.modal",function(){
                     var strategy =$("#strategy").val();
                     var theme =$("#theme").val();
+                    config.setStrategy(strategy);
+                    config.setTheme(theme);
 
-                    my2048.my2048(strategy,theme);
+                    my2048.my2048();
                 });
                 $(this).button("start");
             });
