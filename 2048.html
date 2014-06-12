@@ -20,201 +20,206 @@
 </head>
 
 <body>
+<ul class="nav nav-tabs"><!-- 加了tab之后chrome高度上会出现1个像素的滚动条，ie和firefox不会-->
+    <li><a href="#about" data-toggle="tab">about</a></li>
+    <li><a href="#game" data-toggle="tab">game</a></li>
+    <li><a href="#author" data-toggle="tab">author</a></li>
+</ul>
+<div class="tab-content ">
+    <div class="tab-pane fade" id="about"></div>
+    <div class="tab-pane fade" id="author"></div>
+    <div class="container tab-pane fade in active" id="game">
+        <div class="row">
+            <div class="col-md-1"></div>
 
-<div id="container">
-    <div class="row">
-        <div class="col-md-1"></div>
-
-        <div class="col-md-10">
-            <h1>打造自己的2048！</h1>
+            <div class="col-md-10">
+                <h1>打造自己的2048！</h1>
+            </div>
+            <div class="col-md-1">mengying</div>
         </div>
-        <div class="col-md-1">mengying</div>
-    </div>
-    <div class="row">
-        <div class="col-md-1">xuhuiyuan</div>
+        <div class="row">
+            <div class="col-md-1">xuhuiyuan</div>
 
-        <div class="col-md-10">
-            <div class="row">
-                <div class="col-md-8">
-                    <div class="panel ">
-                        <table  cellspacing="0" collapse="0">
-                            <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                        </table>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="panel panel-default ">
-                        <div class="panel-heading">游戏设置</div>
-
-                        <div class="panel-body">
-
-                            <div class="row">
-                                <div class="col-lg-12">
-                                    选择规则：
-                                    <select id="strategy">
-                                        <option value="xu">许的规则</option>
-                                        <option value="meng">孟的规则</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-lg-12">
-                                    选择规则：
-                                    <select id="other">
-                                        <option value="xu">许的规则</option>
-                                        <option value="meng">孟的规则</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-lg-12">
-                                    选择背景颜色：
-                                    <input type="text" value="000" name="bgColor" id="bg-color"
-                                             class="pick-a-color form-control">
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-lg-12">
-                                    选择边框样式：
-                                    <select id="border-style">
-                                        <option value="solid">solid</option>
-                                        <option value="inset">inset</option>
-                                        <option
-                                                value="dotted">dotted</option>
-                                        <option
-                                                value="dashed">dashed</option>
-                                        <option
-                                                value="double">double</option>
-                                        <option
-                                                value="groove">groove</option>
-                                        <option value="ridge">ridge</option>
-                                        <option
-                                                value="outset">outset</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-lg-12">
-                                    选择边框颜色：
-                                    <input type="text" value="000"
-                                           name="borderColor" id="border-color" class="pick-a-color form-control">
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-lg-12">
-                                    选择边框宽度：
-                                    <select id="border-width">
-                                        <option value="thin">thin</option>
-                                        <option
-                                                value="medium">medium</option>
-                                        <option value="thick">thick</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-lg-12">
-
-                                    <button type="button" class="btn btn-
-default" id="start">启动</button>
-                                    <button type="button" class="btn btn-
-default" data-toggle="modal" data-target="#resetModal" id="reset">恢复默认
-                                    </button>
-
-                                </div>
-                            </div>
-
+            <div class="col-md-10">
+                <div class="row">
+                    <div class="col-md-8">
+                        <div class="panel ">
+                            <table  cellspacing="0" collapse="0">
+                                <tr>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                            </table>
                         </div>
-                        <div class="panel-footer">谢谢</div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="panel panel-default ">
+                            <div class="panel-heading">游戏设置</div>
+
+                            <div class="panel-body">
+
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        选择规则：
+                                        <select id="strategy">
+                                            <option value="xu">许的规则</option>
+                                            <option value="meng">孟的规则</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        选择规则：
+                                        <select id="other">
+                                            <option value="xu">许的规则</option>
+                                            <option value="meng">孟的规则</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        选择背景颜色：
+                                        <input type="text" value="000" name="bgColor" id="bg-color"
+                                               class="pick-a-color form-control">
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        选择边框样式：
+                                        <select id="border-style">
+                                            <option value="solid">solid</option>
+                                            <option value="inset">inset</option>
+                                            <option
+                                                    value="dotted">dotted</option>
+                                            <option
+                                                    value="dashed">dashed</option>
+                                            <option
+                                                    value="double">double</option>
+                                            <option
+                                                    value="groove">groove</option>
+                                            <option value="ridge">ridge</option>
+                                            <option
+                                                    value="outset">outset</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        选择边框颜色：
+                                        <input type="text" value="000"
+                                               name="borderColor" id="border-color" class="pick-a-color form-control">
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        选择边框宽度：
+                                        <select id="border-width">
+                                            <option value="thin">thin</option>
+                                            <option
+                                                    value="medium">medium</option>
+                                            <option value="thick">thick</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-12">
+
+                                        <button type="button" class="btn btn-default" id="start" data-start-text="重新启动">启动</button>
+                                        <button type="button" class="btn btn-default" data-toggle="modal" data-target="#resetModal" id="reset">恢复默认
+                                        </button>
+
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="panel-footer">谢谢</div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-md-1">mengying</div>
+        </div>
+        <div class="row">
+            <div class="col-md-1">xuhuiyuan</div>
+
+            <div class="col-md-10">
+                disanhang
+            </div>
+            <div class="col-md-1">mengying</div>
+        </div>
+        <div class="modal" id="resetModal">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">
+                            &times;
+                        </button>
+                        <h4 class="modal-title">my 2048</h4>
+                    </div>
+                    <div class="modal-body">
+                        <span>是否恢复到默认设置</span>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" >
+                            是
+                        </button>
+                        <button type="button" class="btn btn-default" >
+                            否
+                        </button>
                     </div>
                 </div>
             </div>
-
         </div>
-        <div class="col-md-1">mengying</div>
-    </div>
-    <div class="row">
-        <div class="col-md-1">xuhuiyuan</div>
-
-        <div class="col-md-10">
-            disanhang
-        </div>
-        <div class="col-md-1">mengying</div>
-    </div>
-    <div class="modal" id="resetModal">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-
-                            dismiss="modal">
-                        &times;
-                    </button>
-                    <h4 class="modal-title">my 2048</h4>
-                </div>
-                <div class="modal-body">
-                    <span>是否恢复到默认设置</span>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" >
-                        是
-                    </button>
-                    <button type="button" class="btn btn-default" >
-                        否
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="modal fade" id="tipModal">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-title">my 2048</h4>
-                </div>
-                <div class="modal-body">
-                    <span>2048游戏，马上开始！</span>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-
-                            dismiss="modal">
-                        关闭
-                    </button>
+        <div class="modal fade" id="tipModal">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">
+                            &times;
+                        </button>
+                        <h4 class="modal-title">my 2048</h4>
+                    </div>
+                    <div class="modal-body">
+                        <span>2048游戏，马上开始！</span>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default close" data-dismiss="modal">
+                            关闭
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
 
+
 </body>
 <script type="text/javascript" src="./lib/jquery-1.9.1.min.js"></script>
-<script type="text/javascript" src="./lib/bootstrap-3.1.1-
-dist/js/bootstrap.js"></script>
-<script type="text/javascript" src="./lib/pick-a-color1.2.3/tinycolor-
-0.9.15.min.js"></script>
-<script type="text/javascript" src="./lib/pick-a-color1.2.3/js/pick-a-
-color-1.2.3.min.js"></script>
+<script type="text/javascript" src="./lib/bootstrap-3.1.1-dist/js/bootstrap.js"></script>
+<script type="text/javascript" src="./lib/pick-a-color1.2.3/tinycolor-0.9.15.min.js"></script>
+<script type="text/javascript" src="./lib/pick-a-color1.2.3/js/pick-a-color-1.2.3.min.js"></script>
 <script type="text/javascript" src="./lib/sea-debug.js"></script>
 <script type="text/javascript">
 
@@ -243,6 +248,7 @@ color-1.2.3.min.js"></script>
                 inlineDropdown					: true
             });
 
+            //一些游戏设置项的事件绑定
             $("#bg-color").on("change",function(){
                 $("body").css("background-color","#"+$(this).val());
             });
@@ -254,19 +260,21 @@ color-1.2.3.min.js"></script>
                 $("table").css("border-style",$(this).val());
                 $("td").css("border-style",$(this).val());
             });
-             $("#border-width").on("change",function(){
-             $("table").css("border-width",$(this).val());
-             $("td").css("border-width",$(this).val());
-             });
+            $("#border-width").on("change",function(){
+                $("table").css("border-width",$(this).val());
+                $("td").css("border-width",$(this).val());
+            });
 
             $("#start").on("click",function(){
                 $("#tipModal").modal({
                     backdrop:true,
                     keyboard:true,
                     show:true
+                }).on("hidden.bs.modal",function(){
+                    var strategy =$("#strategy").val();
+                    my2048.my2048(strategy);
                 });
-                var strategy =$("#strategy").val();
-                my2048.my2048(strategy);
+                $(this).button("start");
             });
 
 

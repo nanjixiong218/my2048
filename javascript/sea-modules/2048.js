@@ -12,6 +12,7 @@ define(function(require,exports,modules){
         var i=0;
         var j=0;
         initT();
+        fill.fill(t,table);
         newNum.getNewNum(t,table);
         document.onkeyup=keyupEvent;
         function keyupEvent(event){
