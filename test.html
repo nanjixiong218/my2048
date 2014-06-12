@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang = "en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>my2048</title>
+    <link type = "text/css" rel = "stylesheet" href="./lib/bootstrap-3.1.1-dist/css/bootstrap.css">
+    <link type = "text/css" rel = "stylesheet" href="./lib/pick-a-color1.2.3/css/pick-a-color-1.2.3.min.css">
+    <link type = "text/css" rel = "stylesheet" href="./style/base.css">
+
+
+    <style type='text/css'>
+        .row{
+            padding-top:5px;
+            padding-bottom: 5px;
+        }
+    </style>
+
+</head>
+
+<body>
+<div>
+    <div  id="mynav">
+      <nav class="navbar navbar-default navbar-fixed-top" role="navigation"><!--必须要用navbar才行 -->
+        <ul class="nav navbar-nav" >
+            <li class="active"><a href="#one">游戏基本介绍</a></li>
+            <li class=""><a href="#two">规则选择介绍</a></li>
+            <li class=""><a href="#third">增强玩法</a></li>
+        </ul>
+      </nav>
+
+    </div>
+    <div  data-target="#mynav" data-spy="scroll" style="height:500px;overflow:auto;">
+        <h3 id="one">游戏基本介绍</h3>
+        <p>
+            游戏基本介绍
+        </p>
+        <p>
+            游戏基本介绍
+        </p>
+        <p>
+            游戏基本介绍
+        </p>
+        <p>
+            游戏基本介绍
+        </p>
+        <p>
+            游戏基本介绍
+        </p>
+        <p>
+            游戏基本介绍
+        </p>
+        <p>
+            游戏基本介绍
+        </p>
+        <p>
+            游戏基本介绍
+        </p>
+        <p>
+            游戏基本介绍
+        </p>
+        <p>
+            游戏基本介绍
+        </p>
+        <p>
+            游戏基本介绍
+        </p>
+        <p>
+            游戏基本介绍
+        </p>
+        <p>
+            游戏基本介绍
+        </p>
+        <p>
+            游戏基本介绍
+        </p>
+        <p>
+            游戏基本介绍
+        </p>
+        <p>
+            游戏基本介绍
+        </p>
+        <p>
+            游戏基本介绍
+        </p>
+        <h3 id="two">规则选择介绍</h3>
+        <p>
+            规则选择介绍
+        </p>
+        <p>
+            规则选择介绍
+        </p>
+        <p>
+            规则选择介绍
+        </p>
+        <p>
+            规则选择介绍
+        </p>
+        <p>
+            规则选择介绍
+        </p>
+        <p>
+            规则选择介绍
+        </p>
+        <p>
+            规则选择介绍
+        </p>
+        <p>
+            规则选择介绍
+        </p>
+        <p>
+            规则选择介绍
+        </p>
+        <p>
+            规则选择介绍
+        </p>
+        <p>
+            规则选择介绍
+        </p>
+        <p>
+            规则选择介绍
+        </p>
+        <p>
+            规则选择介绍
+        </p>
+        <p>
+            规则选择介绍
+        </p>
+        <p>
+            规则选择介绍
+        </p>
+        <p>
+            规则选择介绍
+        </p>
+        <p>
+            规则选择介绍
+        </p>
+        <p>
+            规则选择介绍
+        </p>
+        <p>
+            规则选择介绍
+        </p>
+        <p>
+            规则选择介绍
+        </p>
+        <h3 id="third">增强玩法</h3>
+        <p>
+            增强玩法
+        </p>
+        <p>
+            增强玩法
+        </p>
+        <p>
+            增强玩法
+        </p>
+        <p>
+            增强玩法
+        </p>
+        <p>
+            增强玩法
+        </p>
+        <p>
+            增强玩法
+        </p>
+        <p>
+            增强玩法
+        </p>
+        <p>
+            增强玩法
+        </p>
+        <p>
+            增强玩法
+        </p>
+        <p>
+            增强玩法
+        </p>
+        <p>
+            增强玩法
+        </p>
+        <p>
+            增强玩法
+        </p>
+        <p>
+            增强玩法
+        </p>
+        <p>
+            增强玩法
+        </p>
+        <p>
+            增强玩法
+        </p>
+        <p>
+            增强玩法
+        </p>
+        <p>
+            增强玩法
+        </p>
+        <p>
+            增强玩法
+        </p>
+        <p>
+            增强玩法
+        </p>
+        <p>
+            增强玩法
+        </p>
+    </div>
+</div>
+
+
+
+</body>
+<script type="text/javascript" src="./lib/jquery-1.9.1.min.js"></script>
+<script type="text/javascript" src="./lib/bootstrap-3.1.1-dist/js/bootstrap.js"></script>
+<script type="text/javascript" src="./lib/pick-a-color1.2.3/tinycolor-0.9.15.min.js"></script>
+<script type="text/javascript" src="./lib/pick-a-color1.2.3/js/pick-a-color-1.2.3.min.js"></script>
+<script type="text/javascript" src="./lib/sea-debug.js"></script>
+<script type="text/javascript">
+
+    seajs.config({
+        base:"./javascript/sea-modules",
+        alias:{
+            "move":"2048move.js",
+            "fill":"fill.js",
+            "getNewNumber":"getNewNumber.js",
+            "2048All":"2048.js"
+        }
+    });
+    seajs.use("2048All",function(my2048){
+        window.onload=function(){
+
+
+        };
+    });
+
+</script>
+</html>
+

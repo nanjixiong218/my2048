@@ -20,13 +20,206 @@
 </head>
 
 <body>
-<ul class="nav nav-tabs"><!-- 加了tab之后chrome高度上会出现1个像素的滚动条，ie和firefox不会-->
+<ul class="nav nav-tabs"><!-- 加了tab之后在笔记本的chrome下高度上会出现1个像素的滚动条，ie和firefox不会-->
     <li><a href="#about" data-toggle="tab">about</a></li>
     <li><a href="#game" data-toggle="tab">game</a></li>
     <li><a href="#author" data-toggle="tab">author</a></li>
 </ul>
 <div class="tab-content ">
-    <div class="tab-pane fade" id="about"></div>
+    <div class="tab-pane fade" id="about">
+        <div class="row">
+
+
+            <div class="col-lg-3 pull-left"  data-spy="affix" data-offset="60">
+                <div  id="mynav">
+
+                        <ul class="nav">
+                            <li class="active"><a href="#one">游戏基本介绍</a></li>
+                            <li class=""><a href="#two">规则选择介绍</a></li>
+                            <li class=""><a href="#third">增强玩法</a></li>
+                        </ul>
+
+                </div>
+            </div>
+            <div class="col-lg-9 pull-right" data-target="#mynav" data-spy="scroll">
+                <h3 id="one">游戏基本介绍</h3>
+                <p>
+                    游戏基本介绍
+                </p>
+                <p>
+                    游戏基本介绍
+                </p>
+                <p>
+                    游戏基本介绍
+                </p>
+                <p>
+                    游戏基本介绍
+                </p>
+                <p>
+                    游戏基本介绍
+                </p>
+                <p>
+                    游戏基本介绍
+                </p>
+                <p>
+                    游戏基本介绍
+                </p>
+                <p>
+                    游戏基本介绍
+                </p>
+                <p>
+                    游戏基本介绍
+                </p>
+                <p>
+                    游戏基本介绍
+                </p>
+                <p>
+                    游戏基本介绍
+                </p>
+                <p>
+                    游戏基本介绍
+                </p>
+                <p>
+                    游戏基本介绍
+                </p>
+                <p>
+                    游戏基本介绍
+                </p>
+                <p>
+                    游戏基本介绍
+                </p>
+                <p>
+                    游戏基本介绍
+                </p>
+                <p>
+                    游戏基本介绍
+                </p>
+                <h3 id="two">规则选择介绍</h3>
+                <p>
+                    规则选择介绍
+                </p>
+                <p>
+                    规则选择介绍
+                </p>
+                <p>
+                    规则选择介绍
+                </p>
+                <p>
+                    规则选择介绍
+                </p>
+                <p>
+                    规则选择介绍
+                </p>
+                <p>
+                    规则选择介绍
+                </p>
+                <p>
+                    规则选择介绍
+                </p>
+                <p>
+                    规则选择介绍
+                </p>
+                <p>
+                    规则选择介绍
+                </p>
+                <p>
+                    规则选择介绍
+                </p>
+                <p>
+                    规则选择介绍
+                </p>
+                <p>
+                    规则选择介绍
+                </p>
+                <p>
+                    规则选择介绍
+                </p>
+                <p>
+                    规则选择介绍
+                </p>
+                <p>
+                    规则选择介绍
+                </p>
+                <p>
+                    规则选择介绍
+                </p>
+                <p>
+                    规则选择介绍
+                </p>
+                <p>
+                    规则选择介绍
+                </p>
+                <p>
+                    规则选择介绍
+                </p>
+                <p>
+                    规则选择介绍
+                </p>
+                <h3 id="third">增强玩法</h3>
+                <p>
+                    增强玩法
+                </p>
+                <p>
+                    增强玩法
+                </p>
+                <p>
+                    增强玩法
+                </p>
+                <p>
+                    增强玩法
+                </p>
+                <p>
+                    增强玩法
+                </p>
+                <p>
+                    增强玩法
+                </p>
+                <p>
+                    增强玩法
+                </p>
+                <p>
+                    增强玩法
+                </p>
+                <p>
+                    增强玩法
+                </p>
+                <p>
+                    增强玩法
+                </p>
+                <p>
+                    增强玩法
+                </p>
+                <p>
+                    增强玩法
+                </p>
+                <p>
+                    增强玩法
+                </p>
+                <p>
+                    增强玩法
+                </p>
+                <p>
+                    增强玩法
+                </p>
+                <p>
+                    增强玩法
+                </p>
+                <p>
+                    增强玩法
+                </p>
+                <p>
+                    增强玩法
+                </p>
+                <p>
+                    增强玩法
+                </p>
+                <p>
+                    增强玩法
+                </p>
+            </div>
+        </div>
+
+    </div>
     <div class="tab-pane fade" id="author"></div>
     <div class="container tab-pane fade in active" id="game">
         <div class="row">
@@ -89,13 +282,14 @@
                                 </div>
                                 <div class="row">
                                     <div class="col-lg-12">
-                                        选择规则：
-                                        <select id="other">
-                                            <option value="xu">许的规则</option>
-                                            <option value="meng">孟的规则</option>
+                                        基本主题选择：
+                                        <select id="theme">
+                                            <option value="num">原始数字</option>
+                                            <option value="char">英文字母</option>
                                         </select>
                                     </div>
                                 </div>
+
                                 <div class="row">
                                     <div class="col-lg-12">
                                         选择背景颜色：
@@ -156,7 +350,6 @@
                         </div>
                     </div>
                 </div>
-
             </div>
             <div class="col-md-1">mengying</div>
         </div>
@@ -229,6 +422,7 @@
             "move":"2048move.js",
             "fill":"fill.js",
             "getNewNumber":"getNewNumber.js",
+            "theme":"theme.js",
             "2048All":"2048.js"
         }
     });
@@ -272,7 +466,9 @@
                     show:true
                 }).on("hidden.bs.modal",function(){
                     var strategy =$("#strategy").val();
-                    my2048.my2048(strategy);
+                    var theme =$("#theme").val();
+
+                    my2048.my2048(strategy,theme);
                 });
                 $(this).button("start");
             });
