@@ -21,10 +21,30 @@ define(function(require,exports,modules){
             var keycode = event.which?event.which:event.keyCode?event.keyCode:event.charCode;
 
             switch(keycode){
-                case 37:config.strategy.left(t);fill.fill(t,table);newNum.getNewNum(t,table);break;
-                case 38:config.strategy.up(t);fill.fill(t,table);newNum.getNewNum(t,table);break;
-                case 39:config.strategy.right(t);fill.fill(t,table);newNum.getNewNum(t,table);break;
-                case 40:config.strategy.down(t);fill.fill(t,table);newNum.getNewNum(t,table);break;
+                case 37:
+                    config.setDirection("left");config.strategy.left(t);fill.fill(t,table);
+                    if(config.strategy.isChanged(t,config.oldT)){
+                        newNum.getNewNum(t,table);
+                        config.setOldT(t);
+                    };break;
+                case 38:
+                    config.setDirection("up");config.strategy.up(t);fill.fill(t,table);
+                    if(config.strategy.isChanged(t,config.oldT)){
+                        newNum.getNewNum(t,table);
+                        config.setOldT(t)
+                    };
+                    break;
+                case 39:
+                    config.setDirection("right");config.strategy.right(t);fill.fill(t,table);
+                    if(config.strategy.isChanged(t,config.oldT)){
+                        newNum.getNewNum(t,table);
+                        config.setOldT(t);
+                    };break;
+                case 40:config.setDirection("down");config.strategy.down(t);fill.fill(t,table);
+                    if(config.strategy.isChanged(t,config.oldT)){
+                        newNum.getNewNum(t,table);
+                        config.setOldT(t);
+                    };break;
             }
         }
 
@@ -42,6 +62,7 @@ define(function(require,exports,modules){
                 }
                 t.push(tr);
             }
+            config.setOldT(t);
         }
     }
     exports.my2048 = my2048;

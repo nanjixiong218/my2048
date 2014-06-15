@@ -2,6 +2,8 @@
  * Created by Administrator on 2014/6/9.
  */
 define(function(require,exports,module){
+    //var config = require("config");//这样将出现嵌套require，页面直接卡死
+    //var oldT = config.oldT;
     var Strategy = (function(){
         var all = {};
         var length = 0;
@@ -176,6 +178,16 @@ define(function(require,exports,module){
                     }
                 }
             }
+        },
+        isChanged:function(t,oldT){
+            for(var i=0;i< t.length;i++){
+                for(var j=0;j< t.length;j++){
+                    if(!t[i][j]==oldT[i][j]){
+                        return true;
+                    }
+                }
+            }
+            return false;
         }
     }
     var st2 = {
@@ -338,6 +350,17 @@ define(function(require,exports,module){
                     }
                 }
             }
+        },
+        isChanged:function(t,oldT){
+            for(var i=0;i< t.length;i++){
+                for(var j=0;j< t.length;j++){
+                    if(t[i][j]!=oldT[i][j]){
+                        return true;
+                    }
+                }
+            }
+
+            return false;
         }
     }
     Strategy.add(st1);
