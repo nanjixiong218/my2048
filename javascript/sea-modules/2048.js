@@ -22,31 +22,25 @@ define(function(require,exports,modules){
 
             switch(keycode){
                 case 37:
-                    config.setDirection("left");config.strategy.left(t);fill.fill(t,table);
-                    if(config.strategy.isChanged(t,config.oldT)){
-                        newNum.getNewNum(t,table);
-                        config.setOldT(t);
-                    };break;
+                    config.setDirection("left");config.strategy.left(t);break;
                 case 38:
-                    config.setDirection("up");config.strategy.up(t);fill.fill(t,table);
-                    if(config.strategy.isChanged(t,config.oldT)){
-                        newNum.getNewNum(t,table);
-                        config.setOldT(t)
-                    };
-                    break;
+                    config.setDirection("up");config.strategy.up(t);break;
                 case 39:
-                    config.setDirection("right");config.strategy.right(t);fill.fill(t,table);
-                    if(config.strategy.isChanged(t,config.oldT)){
-                        newNum.getNewNum(t,table);
-                        config.setOldT(t);
-                    };break;
-                case 40:config.setDirection("down");config.strategy.down(t);fill.fill(t,table);
-                    if(config.strategy.isChanged(t,config.oldT)){
-                        newNum.getNewNum(t,table);
-                        config.setOldT(t);
-                    };break;
+                    config.setDirection("right");config.strategy.right(t);break;
+                case 40:
+                    config.setDirection("down");config.strategy.down(t);break;
             }
+            fill.fill(t,table);
+            if(config.strategy.isChanged(t,config.oldT)){
+                newNum.getNewNum(t,table);
+                config.setOldT(t);
+            }else{
+                if(newNum.isDead(t)){
+                    alert("you are a pig!");
+                }
+            };
         }
+
 
         /**
          * 初始化t

@@ -182,7 +182,7 @@ define(function(require,exports,module){
         isChanged:function(t,oldT){
             for(var i=0;i< t.length;i++){
                 for(var j=0;j< t.length;j++){
-                    if(!t[i][j]==oldT[i][j]){
+                    if(t[i][j]!=oldT[i][j]){
                         return true;
                     }
                 }

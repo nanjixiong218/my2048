@@ -62,7 +62,7 @@ define(function(require,exports,module){
             }
         }
         var emptyNum = empty.length;
-        if(emptyNum==0){//死了
+        if(emptyNum==0){
             return false;
         }
         var random = Math.floor(Math.random()*(emptyNum));
@@ -121,12 +121,15 @@ define(function(require,exports,module){
                         return false;
                     }
                 }else{
-                    return false;
+                    return true;
                 }
             }
-            return true;
+
         }
+        return true;
+
     }
 
     exports.getNewNum = getNewNum;
+    exports.isDead = isDead;
 });
