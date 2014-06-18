@@ -30,7 +30,7 @@ define(function(require,exports,module){
     })();
 
     var st1 = {
-        name:"xu",//这种算法不太好，解决级联合并问题比较困难，而且难以进行抽象
+        name:"orc",//这种算法不太好，解决级联合并问题比较困难，而且难以进行抽象
         up:function(t){
             var flag;//向上查找是否找到有值的td标记位
             for(var i=0;i< t.length;i++){//从性能出发，i=1开始遍历即可
@@ -191,7 +191,7 @@ define(function(require,exports,module){
         }
     }
     var st2 = {
-        name:"meng",//我女朋友想的算法，没有级联合并问题
+        name:"one",//我女朋友想的算法，没有级联合并问题
         up:function(t){//纵向移动就纵向遍历
             for(var j = 0; j<t.length; j++){
                 var emptyRow = 0;//记录空行行号

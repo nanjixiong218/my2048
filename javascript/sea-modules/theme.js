@@ -57,11 +57,20 @@ define(function(require,exports,module){
         name:"char",
         data:new Map(),
         fillData:function(){
-            this.data.put("2",{text:"a",func:function(){}});
-            this.data.put("4",{text:"b",func:function(){}});
-            this.data.put("8",{text:"c",func:function(){}});
-            this.data.put("16",{text:"d",func:function(){}});
-            this.data.put("32",{text:"e",func:function(){}});
+            this.data.put("2",{text:"a",func:function(){$("body").css("background-image","url(static/image/f/0.jpg)")}});
+            this.data.put("4",{text:"b",func:function(){
+                $("#myModal").modal({
+                    backdrop:true,
+                    keyboard:true,
+                    show:true
+                });
+                var canvas = document.getElementById("myCanvas");
+                var cxt = canvas.getContext("2d");
+
+            }});
+            this.data.put("8",{text:"c",func:function(){$("body").css("background-image","url(static/image/f/2.jpg)")}});
+            this.data.put("16",{text:"d",func:function(){$("body").css("background-image","url(static/image/f/3.jpg)")}});
+            this.data.put("32",{text:"e",func:function(){$("body").css("background-image","url(static/image/f/4.jpg)")}});
             this.data.put("64",{text:"f",func:function(){}});
             this.data.put("128",{text:"g",func:function(){}});
             this.data.put("256",{text:"h",func:function(){}});
@@ -76,23 +85,53 @@ define(function(require,exports,module){
         name:"num",
         data:new Map(),
         fillData:function(){
-            this.data.put("2",{text:"2",func:function(){}});
-            this.data.put("4",{text:"4",func:function(){}});
-            this.data.put("8",{text:"8",func:function(){}});
-            this.data.put("16",{text:"16",func:function(){}});
-            this.data.put("32",{text:"32",func:function(){}});
-            this.data.put("64",{text:"64",func:function(){}});
-            this.data.put("128",{text:"128",func:function(){}});
-            this.data.put("256",{text:"256",func:function(){}});
-            this.data.put("512",{text:"512",func:function(){}});
-            this.data.put("1024",{text:"1024",func:function(){}});
-            this.data.put("2048",{text:"2048",func:function(){}});
-            this.data.put("4096",{text:"4096",func:function(){}});
+            this.data.put("2",{text:"2",func:function(){$("body").css("background-color","white")}});
+            this.data.put("4",{text:"4",func:function(){
+                $("#myModal").modal({
+                    backdrop:true,
+                    keyboard:true,
+                    show:true
+                 });
+                var canvas = document.getElementById("myCanvas");
+                var cxt = canvas.getContext("2d");
+
+              }
+            });
+            this.data.put("8",{text:"8",func:function(){$("body").css("background-color","#00c13f")}});
+            this.data.put("16",{text:"16",func:function(){$("body").css("background-color","#1faeff")}});
+            this.data.put("32",{text:"32",func:function(){$("body").css("background-color","#56c5ff")}});
+            this.data.put("64",{text:"64",func:function(){$("body").css("background-color","#f4b300")}});
+            this.data.put("128",{text:"128",func:function(){$("body").css("background-color","#ff7d23")}});
+            this.data.put("256",{text:"256",func:function(){$("body").css("background-color","#ff2e12")}});
+            this.data.put("512",{text:"512",func:function(){$("body").css("background-color","#ff76bc")}});
+            this.data.put("1024",{text:"1024",func:function(){$("body").css("background-color","#e064b7")}});
+            this.data.put("2048",{text:"2048",func:function(){$("body").css("background-color","#aa40ff")}});
+            this.data.put("4096",{text:"4096",func:function(){$("body").css("background-color","#569ce3")}});
         }
     }
     numTheme.fillData();
+    var travelTheme = {
+        name:"travel",
+        data:new Map(),
+        fillData:function(){
+            this.data.put("2",{text:"趵突泉",func:function(){$("body").css("background-color","white")}});
+            this.data.put("4",{text:"九寨沟",func:function(){}});
+            this.data.put("8",{text:"丽江",func:function(){$("body").css("background-color","#00c13f")}});
+            this.data.put("16",{text:"泰山",func:function(){$("body").css("background-color","#1faeff")}});
+            this.data.put("32",{text:"华山",func:function(){$("body").css("background-color","#56c5ff")}});
+            this.data.put("64",{text:"嵩山",func:function(){$("body").css("background-color","#f4b300")}});
+            this.data.put("128",{text:"龙门石窟",func:function(){$("body").css("background-color","#ff7d23")}});
+            this.data.put("256",{text:"白马寺",func:function(){$("body").css("background-color","#ff2e12")}});
+            this.data.put("512",{text:"512",func:function(){$("body").css("background-color","#ff76bc")}});
+            this.data.put("1024",{text:"1024",func:function(){$("body").css("background-color","#e064b7")}});
+            this.data.put("2048",{text:"2048",func:function(){$("body").css("background-color","#aa40ff")}});
+            this.data.put("4096",{text:"4096",func:function(){$("body").css("background-color","#569ce3")}});
+        }
+    }
+    travelTheme.fillData();
     Theme.addTheme(charTheme);
     Theme.addTheme(numTheme);
+    Theme.addTheme(travelTheme);
 
     module.exports = Theme;
 });

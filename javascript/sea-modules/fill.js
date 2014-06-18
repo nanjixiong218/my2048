@@ -27,6 +27,9 @@ define(function(require,exports,module){
                 }
             }
         }
+        if(isAnimate(t)){
+            theme.data.get(getMax(t).num).func();
+        }
     }
     /**
      * 设置对应位置的td的值
@@ -43,6 +46,57 @@ define(function(require,exports,module){
         target.style.backgroundColor=colors[pow];
     }
 
+    /**
+     * 判断是否触发动画，查找当前最大的值，如果最大值是第一次出现，就返回true
+     * @param t
+     * @returns {boolean}
+     */
+
+    function isAnimate(t){
+        var oldMax = config.oldMax;
+        var max = getMax(t);
+        if(max.num>oldMax){
+            config.setOldMax(max.num);
+            return true;
+        }
+        return false;
+
+    }
+    /**
+     * 获取最大的数，返回值是个对象，包括这个最大的数和它出现的次数
+     * @param t
+     * @returns {{num: number, count: number}}
+     */
+    function getMax(t){
+        var result = 0;
+        var count = 0;
+        for(var i=0;i< t.length;i++)//查找最大的元素
+            for(var j=0;j< t.length;j++){
+                if(t[i][j]>result){
+                    result = t[i][j];
+                }
+            }
+        for(var i=0;i< t.length;i++)//计算最大的元素出现的次数
+            for(var j=0;j< t.length;j++){
+                if(t[i][j]==result){
+                    count++;
+                }
+            }
+        return {num:result,count:count};
+    }
+
+    /**
+     * 计算得分
+     * @param t
+     */
+    function getScore(t){
+        var score = 0 ;
+        for(var i=0;i< t.length;i++)
+            for(var j=0;j< t.length;j++){
+                score+=t[i][j];
+            }
+
+    }
 
 
     exports.fill=fill;

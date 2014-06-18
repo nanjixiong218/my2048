@@ -4,10 +4,11 @@ define(function(require,exports,module){
     module.exports = {
         "border":"solid #ffffff 10px",
         "bgcolor":"#000",
-        "strategy":Strategy.get("xu"),
+        "strategy":Strategy.get("orc"),
         "theme":Theme.getTheme("num"),
         "direction":"up",
         "oldT":[],
+        "oldMax":0,
         setBorder:function(border){
             this.border=border;
         },
@@ -33,6 +34,9 @@ define(function(require,exports,module){
                 this.oldT.push(t[i].concat());
             }
 
+        },
+        setOldMax:function(oldMax){
+            this.oldMax=oldMax;
         }
     }
 })
