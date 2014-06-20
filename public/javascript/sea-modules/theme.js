@@ -69,16 +69,23 @@ define(function(require,exports,module){
             }});
             this.data.put("8",{text:"c",func:function(){
                 //canvas动画
-                $("#myModal").modal({
-                    backdrop:true,
-                    keyboard:true,
-                    show:true
-                });
+
                 var canvas = document.getElementById("myCanvas");
                 var cxt = canvas.getContext("2d");
-                cxt.fillStyle = "blue";
-                cxt.fillRect(0,0,100,100);
+                canvas.style.display="block";
+                cxt.font="300px Times New Roman";
 
+                var interval = setInterval(function(that){
+                    return function draw(){
+                        cxt.clearRect(0,0,canvas.width,canvas.height);
+                        cxt.fillText(that.text,Math.random()*1000|0,Math.random()*600|0);
+                    }
+                }(this),30);
+
+                setTimeout(function(){
+                    clearInterval(interval);
+                    canvas.style.display="none";
+                },4000);
 
             }})
             this.data.put("16",{text:"d",func:function(){
@@ -138,18 +145,18 @@ define(function(require,exports,module){
         name:"travel",
         data:new Map(),
         fillData:function(){
-            this.data.put("2",{text:"趵突泉",func:function(){document.body.style.backgroundImage="url('static/image/f/0.jpg')"}});//页面总是会闪一下是什么原因？可能需要先把图片下下来，缓存住。
-            this.data.put("4",{text:"九寨沟",func:function(){document.body.style.backgroundImage="url('static/image/f/1.jpg')"}});
-            this.data.put("8",{text:"丽江",func:function(){document.body.style.backgroundImage="url('static/image/f/2.jpg')"}});
-            this.data.put("16",{text:"泰山",func:function(){document.body.style.backgroundImage="url('static/image/f/3.jpg')"}});
-            this.data.put("32",{text:"华山",func:function(){$("body").css("background-color","#56c5ff")}});
-            this.data.put("64",{text:"嵩山",func:function(){$("body").css("background-color","#f4b300")}});
-            this.data.put("128",{text:"龙门石窟",func:function(){$("body").css("background-color","#ff7d23")}});
-            this.data.put("256",{text:"白马寺",func:function(){$("body").css("background-color","#ff2e12")}});
-            this.data.put("512",{text:"512",func:function(){$("body").css("background-color","#ff76bc")}});
-            this.data.put("1024",{text:"1024",func:function(){$("body").css("background-color","#e064b7")}});
-            this.data.put("2048",{text:"2048",func:function(){$("body").css("background-color","#aa40ff")}});
-            this.data.put("4096",{text:"4096",func:function(){$("body").css("background-color","#569ce3")}});
+            this.data.put("2",{text:"趵突泉",func:function(){document.body.style.backgroundImage="url('static/image/scene/btq.jpg')"}});//页面总是会闪一下是什么原因？可能需要先把图片下下来，缓存住。
+            this.data.put("4",{text:"九寨沟",func:function(){document.body.style.backgroundImage="url('static/image/scene/jzg.jpg')"}});
+            this.data.put("8",{text:"丽江",func:function(){document.body.style.backgroundImage="url('static/image/scene/lj.jpg')"}});
+            this.data.put("16",{text:"泰山",func:function(){document.body.style.backgroundImage="url('static/image/scene/ts.jpg')"}});
+            this.data.put("32",{text:"断桥",func:function(){document.body.style.backgroundImage="url('static/image/scene/dq.jpg')"}});
+            this.data.put("64",{text:"黄山",func:function(){document.body.style.backgroundImage="url('static/image/scene/hs.jpg')"}});
+            this.data.put("128",{text:"龙门石窟",func:function(){document.body.style.backgroundImage="url('static/image/scene/lmsk.jpg')"}});
+            this.data.put("256",{text:"西溪湿地",func:function(){document.body.style.backgroundImage="url('static/image/scene/xixi.jpg')"}});
+            this.data.put("512",{text:"凤凰山",func:function(){document.body.style.backgroundImage="url('static/image/scene/fhs.jpg')"}});
+            this.data.put("1024",{text:"",func:function(){document.body.style.backgroundImage="url('static/image/scene/dq.jpg')"}});
+            this.data.put("2048",{text:"2048",func:function(){document.body.style.backgroundImage="url('static/image/scene/ts.jpg')"}});
+            this.data.put("4096",{text:"4096",func:function(){document.body.style.backgroundImage="url('static/image/scene/ts.jpg')"}});
         }
     }
     travelTheme.fillData();

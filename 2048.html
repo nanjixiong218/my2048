@@ -86,6 +86,7 @@
 
 <body>
 <div id = "pop" style="display: none;position:absolute;top:50%;left:50%;width:400px;height:200px;margin:-100px 0 0 -200px;z-index: 100;"></div>
+<canvas width="1300" height="600px" id="myCanvas" style="display: none;position:absolute;top:0px;left:0;z-index: 101"></canvas>
 <ul class="nav nav-tabs"><!-- 加了tab之后在笔记本的chrome下高度上会出现1个像素的滚动条，ie和firefox不会-->
     <li><a href="#about" data-toggle="tab">about</a></li>
     <li><a href="#game" data-toggle="tab">game</a></li>
@@ -458,7 +459,7 @@
                         <h3 class="modal-title">特效</h3>
                     </div>
                     <div class="modal-body">
-                        <canvas width="100%" height="100%" id="myCanvas"></canvas>
+
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default close" data-dismiss="modal">
