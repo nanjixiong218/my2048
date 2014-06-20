@@ -1,0 +1,13 @@
+table{
+    margin:auto auto;
+    width:520px;
+    height:450px;
+    border:10px solid gainsboro;
+}
+td{
+    text-align: center;
+    width:80px;
+    height:80px;
+    font-size:30px;
+    border:6px inset gainsboro;
+}

@@ -5,9 +5,9 @@
     <meta http-equiv="x-ua-compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <title>my2048</title>
-    <link type = "text/css" rel = "stylesheet" href="./lib/bootstrap-3.1.1-dist/css/bootstrap.css">
-    <link type = "text/css" rel = "stylesheet" href="./lib/pick-a-color1.2.3/css/pick-a-color-1.2.3.min.css">
-    <link type = "text/css" rel = "stylesheet" href="./style/base.css">
+    <link type = "text/css" rel = "stylesheet" href="/lib/bootstrap-3.1.1-dist/css/bootstrap.css">
+    <link type = "text/css" rel = "stylesheet" href="/lib/pick-a-color1.2.3/css/pick-a-color-1.2.3.min.css">
+    <link type = "text/css" rel = "stylesheet" href="/style/base.css">
 
 
     <style type='text/css'>
@@ -18,11 +18,74 @@
         table,tr,td{
             background-color: rgba(255,255,255,0.3);
         }
+        body{
+            background:white;
+            background-size: 100%;
+            transition:background 2s,;
+            -moz-transition:background 2s; /* Firefox 4 */
+            -webkit-transition:background 2s; /* Safari and Chrome */
+        }
+        .pop1{
+            font-size: 200px;
+            width:100px;
+            height:100px;
+            position:relative;
+            animation:first 5s;
+            -moz-animation:first 5s;
+            -webkit-animation:first 5s;
+
+        }
+        .pop2{
+            text-align: center;
+            font-size: 200px;
+            left:0;
+            top:0;
+            width:100px;
+            height:100px;
+            position:relative;
+            animation:second 5s;
+            -moz-animation:second 5s;
+            -webkit-animation:second 5s;
+        }
+        @keyframes first{
+            0%{left:0;top:0}
+            100%{left:100%;top:0}
+        }
+        @-moz-keyframes first{
+            0%{left:0;top:0}
+            100%{left:100%;top:0}
+        }
+        @-webkit-keyframes first{
+            0%{left:0;top:0}
+            100%{left:100%;top:0}
+        }
+        @keyframes second{
+            0%{color:#c7254e;}
+            25%{color:#00ff00;}
+            50%{color:#ffff00;}
+            75%{color:#00ffff;}
+            100%{color:#0000ff}
+        }
+        @-moz-keyframes second{
+            0%{color:#c7254e;}
+            25%{color:#00ff00;}
+            50%{color:#ffff00;}
+            75%{color:#00ffff;}
+            100%{color:#0000ff}
+        }
+        @-webkit-keyframes second{
+            0%{color:#c7254e;}
+            25%{color:#00ff00;}
+            50%{color:#ffff00;}
+            75%{color:#00ffff;}
+            100%{color:#0000ff}
+        }
     </style>
 
 </head>
 
 <body>
+<div id = "pop" style="display: none;position:absolute;top:50%;left:50%;width:400px;height:200px;margin:-100px 0 0 -200px;z-index: 100;"></div>
 <ul class="nav nav-tabs"><!-- 加了tab之后在笔记本的chrome下高度上会出现1个像素的滚动条，ie和firefox不会-->
     <li><a href="#about" data-toggle="tab">about</a></li>
     <li><a href="#game" data-toggle="tab">game</a></li>
@@ -39,100 +102,168 @@
                             <li class="active"><a href="#one">游戏基本介绍</a></li>
                             <li class=""><a href="#two">最终设想</a></li>
                             <li class=""><a href="#third">当前实现</a></li>
+                            <li class=""><a href="#four">目前技术使用</a></li>
+                            <li class=""><a href="#five">未来技术使用与规划</a></li>
                         </ul>
 
                 </div>
             </div>
             <div class="col-lg-10 pull-right" data-target="#mynav" data-spy="scroll">
-                <h3 id="one">游戏基本介绍</h3>
+                <h2 id="one">游戏基本介绍</h2>
                 <p>
                     2048以一款流行的手机app游戏。相信很多人都曾执着于这个神奇的数字！本程序用网页的形式实现了2048的应用，
                     并进行了一定的扩展。
                     首先介绍一下大家熟悉的2048的基本规则：<br/>
-                    1、用法方向键进行移动；<br/>
-                    2、数字相同进行合并；<br/>
-                    3、每次发生移动在随机位置产生一个新数字；无法移动不产生新数字；<br/>
-                    4、随机产生的数字为2或4；<br/>
-                    5、不会级联合并。例如第一行为2240（0代表空），向左移动会变为4400而不是8000；<br/>
+                    <ol>
+                        <li>
+                            用法方向键进行移动；
+                        </li>
+                        <li>数字相同进行合并；</li>
+                        <li>每次发生移动在随机位置产生一个新数字；无法移动不产生新数字；</li>
+                        <li>随机产生的数字为2或4；</li>
+                        <li>不会级联合并。例如第一行为2240（0代表空），向左移动会变为4400而不是8000；</li>
+                    </ol>
+
                 </p>
 
 
 
-                <h3 id="two">最终设想</h3>
+                <h2 id="two">最终设想</h2>
                 <p>
-                    如果是简单的2048，相信大家已经玩腻了。而我要做的2048是可以任意搭配规则，设置主题，甚至联机pk竞技的。
-                    下面介绍一下我的最终设想：<br/>
-                    <h4>1、提供规则，难度选择</h4>
+                    如果是简单的2048，相信大家已经玩腻了。而我要做的2048是可以任意搭配规则，设置主题，甚至联机pk竞技的。<br/>
+                    下面介绍一下我的最终设想：
+                    <h3>1、提供规则，难度选择</h3>
                         基础的规则大家应该都清楚，但是人们习惯新鲜变化的事物，有点变化总是好的，不会那么容易腻。
                     所以在规则上可以进行调整，比如数字合并时可以级联合并，随机生成2或者4的概率可以自由选择，
                     甚至可以有一定概率生成8--2048都可以啊。移动可以用方向键，也可以用WASD，WASD的移动代表两次移动。
-                    比如按W代表按了两次Up。还有那些可变规则都可以加入供选择，这样就不再那么单一了。
-                    <h4>2、主题</h4>
+                    比如按W代表按了两次Up。还有哪些可变规则随时想到都可以加入供选择，这样就不再那么单一了。
+                    <h3>2、主题</h3>
                         这是我所设想的可玩性最好的一点了。据我的游戏经历，一般的游戏都会有一些奖励性触发机制，比如小霸王上的游戏
-                    ，每到一个关卡，背景音乐，画面效果都会改变；有比如传统打怪升级，
-                    技能越来越炫，每发一个技能，会触发一个动画效果，越强大的技能效果越绚丽。<br/>那么在2048也可以体现这一点。
+                    ，每到一个关卡，背景音乐，画面效果都会改变；又比如传统打怪升级，
+                    技能越来越炫，每发一个技能，会触发一个动画效果，越强大的技能效果越绚丽。</p>
+                <p>那么在2048也可以体现这一点。
                     最直观的实现就是每合并到某个阶段就触发一种效果，这种效果的实现就可以多样化了。在web上可以是一段动画，
                     可以让背景发生变化，可以产生不同的背景音乐等等。而且这些设定我想实现成可装配的，
                     比如我会自己实现一些主题共大家选择。<br/>
-                    比如，目前我目前准备实现的主题包括：<br/>
-                    （1）、旅游地理主题：基本元素是一个个旅游景点，名胜古迹。每触发到一个景点，背景图片会变成对应景点的精美展示，
-                    也可以用一个弹出层临时弹出景点名称和介绍。<br/>
-                    （2）、时间主题：基本元素是从人类的起源开始，按时间顺序递进，比如最基本的元素是原始人时期，<br/>
-                    然后原始人时期会合并成秦朝，秦朝合并成汉朝，依次递进到现在甚至未来。而每触发到一个时期，会弹出对应时期的一张代表图片
-                    或者视频动画进行展示。<br/>
-                    （3）、武功秘籍主题：依托于各类武侠小说，基本元素按武功的等级一次递进，比如最开始的最基本的元素可能为长拳，短棍等等，
-                    依次递进可以到太极，八卦，降龙十八掌，打狗棍等各类武学。至于触发的效果可以是先是一段音频“我终于学会了XXX”，
-                    然后生成一段对应武功的动画效果，动画可以用canvas实现等。
+                    目前我目前准备实现的主题包括:
+                    <ul>
+                        <li>旅游地理主题：基本元素是一个个旅游景点，名胜古迹。每触发到一个景点，背景图片会变成对应景点的精美展示，
+                            也可以用一个弹出层临时弹出景点名称和介绍。</li>
+                        <li>时间主题：基本元素是从人类的起源开始，按时间顺序递进，比如最基本的元素是原始人时期，<br/>
+                            然后原始人时期会合并成秦朝，秦朝合并成汉朝，依次递进到现在甚至未来。而每触发到一个时期，会弹出对应时期的一张代表图片
+                            或者视频动画进行展示。</li>
+                        <li>武功秘籍主题：依托于各类武侠小说，基本元素按武功的等级一次递进，比如最开始的最基本的元素可能为长拳，短棍等等，
+                            依次递进可以到太极，八卦，降龙十八掌，打狗棍等各类武学。至于触发的效果可以是先是一段音频“我终于学会了XXX”，
+                            然后生成一段对应武功的动画效果，动画可以用canvas实现等。</li>
+                    </ul>
+                </p>
 
-                        我的另一个打算是把这个主题开发向web开发者提供一个接口，然后可以让所以人都编写自己的创意主题，
-                    装配到我的2048当中。这样的话，将会形成一个小的生态圈，主题越来越丰富，可观赏性也会越来越好。<br/>
+                <p>
+                        我的另一个打算是把主题开发向web开发者提供一个接口，然后可以让所以人都按照我的接口要求编写自己的创意主题，
+                可以发布到网络上供人下载，下载后可以装配到我的2048当中。这样的话，将会形成一个小的生态圈，主题越来越丰富，可观赏性也会越来越好。<br/>
                         所以最终一个优秀的主题也会是一个单一的程序，就我个人而言，自己目前水平有限，动画制作也没有经验，
-                    所以目前恐怕很难做出很好的主题，只能先简单实现基本的功能。希望有兴趣的同学可以和我合作完成整个小项目。
-                    <h4>3、竞技性</h4>
-                    这个就更加进阶了，把2048实现成一种竞技游戏。联机同时启动2048，初步想法，两种竞技方式<br/>
-                    最简单的一种：谁先完成2048，谁赢；都死掉了按分数高者赢；同样分数按时间短者赢；<br/>
-                    血条方式：比如用武功秘籍主题，每一个人有一个血条，谁先学会某种武功会触发动画攻击对方，<br/>
-                    如果对方没有及时学会武功将会受到伤害掉血。谁的血条先掉光谁输。当然这种实现将会很复杂。还需要思考很多问题。这只是个初步想法。
+                    所以目前恐怕很难做出很好的主题，只能先简单完成架构，实现一些基本动画。希望有兴趣的同学可以和我合作完成整个小项目。
                 </p>
-                <h3 id="third">当前实现</h3>
+                    <h3>3、竞技性</h3>
                 <p>
-                    本游戏改进之一就是规则的可选择搭配性。<br/>
-                    目前提供两种基础规则：<br/>
-                    1、传统规则，与原始2048规则相同。<br/>
-                    2、规则1，带有级联合并，除了按方向键，还可以按WASD进行移动，但是WASD会产生两次移动效果。
-                    比如按W相当于按两次Up；
-                    提供难度选择：<br/>
-                    难度的选择主要在与随机生成的数字不仅仅是2，还可以是4。可以选择2和4的随机生成概率。
-                    提供主题选择：<br/>
-                    目前只有简单的两种主题：
-                    数字主题和字母表主题；
+                    这个就更加进阶了，把2048实现成一种竞技游戏。联机同时启动2048，开始pk竞技。<br/>
+                    初步想法，两种竞技方式
+                    <ul>
+                        <li>最简单的一种：谁先完成2048，谁赢；都死掉了按分数高者赢；同样分数按时间短者赢；</li>
+                        <li>血条方式：比如用武功秘籍主题，每一个人有一个血条，谁先学会某种武功会触发动画攻击对方，
+                            如果对方没有及时学会武功将会受到伤害掉血。谁的血条先掉光谁输。当然这种实现将会很复杂。还需要思考很多问题。这只是个初步想法。</li>
+                    </ul>
+                    <br/>
+                    <br/>
+
                 </p>
-                <h3 id="four">技术实现与未来改进</h3>
+                <h2 id="third">当前实现</h2>
                 <p>
-                    如果单从2048的角度来说，实现一个2048不是很困难，网上源码似乎也很多。而我对2048的实现没有参考其它源码，
+                    按照我的最终设想，目前的完成状况是：<br/>
+                    基础规则选择：目前简单了实现了两种规则
+                    <dl>
+                        <dt>传统规则</dt>
+                        <dd>与原始2048规则相同。</dd>
+                        <dt>规则1</dt>
+                        <dd>带有级联合并</dd>
+                    </dl>
+
+                提供主题选择：
+                <dl>
+                    <dt>基础数字主题</dt>
+                    <dd>数字的变化会触发背景色的渐变</dd>
+                    <dt>旅游景点主题</dt>
+                    <dd>基本元素变为景点名称，每合并出一个景点，背景图片会变为对应景点的照片</dd>
+                    <dt>字符主题</dt>
+                    <dd>基本元素变为英文字符，字符的不断递进会触发一些小的对应字符的动画</dd>
+                </dl>
+                还提供了一个界面样式的基础设置，可以设置2048的边框大小，边框样式，边框颜色，也可以设置整个页面背景色。
+                </p>
+                <h2 id="four">目前技术使用</h2>
+                <p>
+                    如果单从2048的角度来说，实现一个2048不是很困难，网上源码似乎也很多。我对2048的实现没有参考其它源码，
                 完全按照自己的思路实现的，而我个人的编程功底并不是很强，所以我最初的想法是先自己实现，
                     然后再找个源码看看别人，专家们是怎样实现的，这样对自我的学习很有帮助，因为我最初写这个就是为了学习。
                     可惜时间上一直没有来得及，目前又要参加csdn code上的这个悬赏项目。所以就姑且先用自己的算法。<br/>
                     我说过如果不考虑代码质量，单单实现2048不是很困难（可是我还是用了4个小时才完成，编程基础有些差）。
                     但是如果把要这个作为一个项目来做，让代码具有更高的可读性，可维护性，可扩展性，然后为游戏添加一些其它增强功能，
                     让其变成可装配的，甚至还要考虑性能，模块化，插件化，mvc的结构化，单元测试和工程化项目构建，那么完成这样一个项目就不再是那么简单了。<br/>
-
                     由于时间问题，加上本人所学知识有限，本应用目前的实现离成为一个完整规范的项目还有很远。当前算是第一版，采用的技术有：
-                    前端展示用bootstrap+jquery，模块化用seajs，简单的canvas绘图技术。
+                    <dl>
+                        <dt>后台技术</dt>
+                        <dd>整个项目是基于node的web项目，目前因为只是个静态单页面应用，且数据量不大，所以其实涉及到的后台内容不多，
+                            所以就不需要用很多的node模块，也暂不需要数据库做持久化，当然更没有必要用express这类的mvc框架。
+                            不过为了测试一下自己写的类似express的小框架，才用了自己的frameXu.js，实际上是没有必要的。<br/>
+                        </dd>
+                        <dt>前端技术</dt>
+                        <dd>前端的界面用的bootstrap+jquery进行搭建，模块化使用seajs，
+                            一些小动画用到了css3,jqueryeaseing，canvas等</dd>
+                    </dl>
+                </p>
+                <h2 id="five">未来技术使用和规划</h2>
+                <p>
+                    <dl>
+                        <dt>
+                            后台
+                        </dt>
+                        <dd>
+                            随着项目的扩展，尤其是主题的增加。整个页面的数据也将是动态的，所以会用到数据库进行存储，数据库我会选择mongodb，
+                            实际上，按照本应用的数据量，我更倾向于不选择服务器端数据库，用web storage技术进行存储。这样还可以进行离线应用。
+                            当然如果交互过于频繁，后台更新迭代很快，也可以两者同时使用。同时会用到比较成熟的express框架进行后台的基础架构设计。
+                        </dd>
+                        <dt>
+                             前台
+                        </dt>
+                        <dd>
+                            <ul>
+                                <li>backbone或者angular进行mvc的层次划分</li>
+                                <li>fabric.js和three.js进行2d和3d的大型动画等图形处理</li>
+                                <li>web storage客户端存储</li>
+                                <li>grunt进行项目构建</li>
+                                <li>写好单元测试；采用测试驱动迭代开发</li>
+                                <li>web storage客户端存储</li>
+                            </ul>
 
-                    正在学习以及未来计划重构使用的技术：
-                    考虑用backbone或者angular进行mvc的层次划分，fabric.js和three.js进行2d和3d的动画等图形处理。
-                    web storage客户端存储。
-                    grunt进行项目构建；写好单元测试；采用测试驱动迭代开发；
-
-                    目前整个代码的设计，类的划分，模块的划分不是很合理，还要再仔细研究下相关设计模式的知识，在重构中进行调整。
+                        </dd>
+                    </dl>
+                未来的2048必然会朝向我的最终设想不断发展，尤其是主题部分，随着对html5技术的不断深入研究，将作出更多有趣，绚丽的主题。
 
                 </p>
+                <h2>目前的问题</h2>
+                    目前整个代码的设计，类的划分，模块的划分不是很合理，还要再仔细研究下相关设计模式的知识，在重构中进行调整。
+                整体架构已经完成，但主题方面太简单。
+                由于时间关系，代码质量不高，缺乏注释和优化。同时也没有进行严格的测试，还请见谅。
             </div>
         </div>
 
     </div>
-    <div class="tab-pane fade" id="author"></div>
+    <div class="tab-pane fade" id="author">
+        <div class="container">
+            我是一个小小的程序员，目前在读研阶段，即将毕业。虽然学过c,c++,c#,java，却对js情有独钟；虽然一直在用的是DB2，却对mongodb一见钟情；
+            虽然做过.net和j2ee,却莫名其妙的更喜欢node；最近一年实习之余，自学了前端相关各方面技术，个人更偏重前端。
+        </div>
+
+    </div>
     <div class="container tab-pane fade in active" id="game">
         <div class="row">
             <div class="col-md-1"></div>
@@ -281,7 +412,7 @@
                         <button type="button" class="close" data-dismiss="modal">
                             &times;
                         </button>
-                        <h4 class="modal-title">my 2048</h4>
+                        <h3 class="modal-title">my 2048</h3>
                     </div>
                     <div class="modal-body">
                         <span>是否恢复到默认设置</span>
@@ -304,7 +435,7 @@
                         <button type="button" class="close" data-dismiss="modal">
                             &times;
                         </button>
-                        <h4 class="modal-title">my 2048</h4>
+                        <h3 class="modal-title">my 2048</h3>
                     </div>
                     <div class="modal-body">
                         <span>2048游戏，马上开始！</span>
@@ -324,7 +455,7 @@
                         <button type="button" class="close" data-dismiss="modal">
                             &times;
                         </button>
-                        <h4 class="modal-title">特效</h4>
+                        <h3 class="modal-title">特效</h3>
                     </div>
                     <div class="modal-body">
                         <canvas width="100%" height="100%" id="myCanvas"></canvas>
@@ -342,11 +473,12 @@
 
 
 </body>
-<script type="text/javascript" src="./lib/jquery-1.9.1.min.js"></script>
-<script type="text/javascript" src="./lib/bootstrap-3.1.1-dist/js/bootstrap.js"></script>
-<script type="text/javascript" src="./lib/pick-a-color1.2.3/tinycolor-0.9.15.min.js"></script>
-<script type="text/javascript" src="./lib/pick-a-color1.2.3/js/pick-a-color-1.2.3.min.js"></script>
-<script type="text/javascript" src="./lib/sea-debug.js"></script>
+<script type="text/javascript" src="/lib/jquery.1.11.1.js"></script>
+<script type="text/javascript" src="/lib/jquery-easing1.3.1.js"></script>
+<script type="text/javascript" src="/lib/bootstrap-3.1.1-dist/js/bootstrap.js"></script>
+<script type="text/javascript" src="/lib/pick-a-color1.2.3/tinycolor-0.9.15.min.js"></script>
+<script type="text/javascript" src="/lib/pick-a-color1.2.3/js/pick-a-color-1.2.3.min.js"></script>
+<script type="text/javascript" src="/lib/sea-debug.js"></script>
 <script type="text/javascript">
 
     seajs.config({
