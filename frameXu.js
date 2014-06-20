@@ -74,7 +74,7 @@ function createServerFunction() {
         if(ext=="unknown"){
             route();
         }else{
-            fs.exists(realPath, function (exists) {
+            path.exists(realPath, function (exists) {
                 console.log(exists);
 
                 if (!exists) {
