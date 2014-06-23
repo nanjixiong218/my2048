@@ -2,8 +2,9 @@ define(function(require,exports,module){
     var Theme = require("theme");
     var Strategy = require("strategy");
     module.exports = {
-        "border":"solid #ffffff 10px",
-        "bgcolor":"#000",
+        "tdBorder":"6px inset gainsboro",
+        "tableBorder":"10px solid gainsboro",
+        "bgColor":"white",
         "strategy":Strategy.get("orc"),
         "theme":Theme.getTheme("num"),
         "direction":"up",
@@ -12,7 +13,7 @@ define(function(require,exports,module){
         setBorder:function(border){
             this.border=border;
         },
-        setBgcolor:function(bgcolor){
+        setBgColor:function(bgcolor){
             this.bgColor = bgcolor;
         },
         setStrategy:function(startegy){

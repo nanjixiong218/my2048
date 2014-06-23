@@ -27,6 +27,7 @@ define(function(require,exports,module){
                 }
             }
         }
+        document.getElementById("score").innerHTML=getScore(t);
         if(isAnimate(t)){
             theme.data.get(getMax(t).num).func();
         }
@@ -95,6 +96,7 @@ define(function(require,exports,module){
             for(var j=0;j< t.length;j++){
                 score+=t[i][j];
             }
+        return score;
 
     }
 

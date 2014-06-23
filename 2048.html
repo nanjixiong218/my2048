@@ -8,6 +8,7 @@
     <link type = "text/css" rel = "stylesheet" href="/lib/bootstrap-3.1.1-dist/css/bootstrap.css">
     <link type = "text/css" rel = "stylesheet" href="/lib/pick-a-color1.2.3/css/pick-a-color-1.2.3.min.css">
     <link type = "text/css" rel = "stylesheet" href="/style/base.css">
+    <link type = "text/css" rel = "stylesheet" href="/style/animote.css">
 
 
     <style type='text/css'>
@@ -19,74 +20,29 @@
             background-color: rgba(255,255,255,0.3);
         }
         body{
+            font-family: KaiTi\6977\4F53;
+            font-size: 20px;
+            line-height:1.5em;
             background:white;
             background-size: 100%;
             transition:background 2s,;
             -moz-transition:background 2s; /* Firefox 4 */
             -webkit-transition:background 2s; /* Safari and Chrome */
         }
-        .pop1{
-            font-size: 200px;
-            width:100px;
-            height:100px;
-            position:relative;
-            animation:first 5s;
-            -moz-animation:first 5s;
-            -webkit-animation:first 5s;
+        #score{
+            color:red;
+        }
 
-        }
-        .pop2{
-            text-align: center;
-            font-size: 200px;
-            left:0;
-            top:0;
-            width:100px;
-            height:100px;
-            position:relative;
-            animation:second 5s;
-            -moz-animation:second 5s;
-            -webkit-animation:second 5s;
-        }
-        @keyframes first{
-            0%{left:0;top:0}
-            100%{left:100%;top:0}
-        }
-        @-moz-keyframes first{
-            0%{left:0;top:0}
-            100%{left:100%;top:0}
-        }
-        @-webkit-keyframes first{
-            0%{left:0;top:0}
-            100%{left:100%;top:0}
-        }
-        @keyframes second{
-            0%{color:#c7254e;}
-            25%{color:#00ff00;}
-            50%{color:#ffff00;}
-            75%{color:#00ffff;}
-            100%{color:#0000ff}
-        }
-        @-moz-keyframes second{
-            0%{color:#c7254e;}
-            25%{color:#00ff00;}
-            50%{color:#ffff00;}
-            75%{color:#00ffff;}
-            100%{color:#0000ff}
-        }
-        @-webkit-keyframes second{
-            0%{color:#c7254e;}
-            25%{color:#00ff00;}
-            50%{color:#ffff00;}
-            75%{color:#00ffff;}
-            100%{color:#0000ff}
-        }
     </style>
 
 </head>
 
 <body>
-<div id = "pop" style="display: none;position:absolute;top:50%;left:50%;width:400px;height:200px;margin:-100px 0 0 -200px;z-index: 100;"></div>
-<canvas width="1300" height="600px" id="myCanvas" style="display: none;position:absolute;top:0px;left:0;z-index: 101"></canvas>
+<div id = "pop" style="display: none;position:absolute;top:40%;left:50%;width:400px;height:200px;margin:-100px 0 0 -200px;z-index: 100;"></div>
+<div  id="canvasDiv" style="display: none;position:absolute;width:100%;height:100%;top:0px;left:0;z-index: 101">
+    <canvas  id="myCanvas" style="position:absolute;width:100%;height:100%;top:0px;left:0;"></canvas>
+</div>
+
 <ul class="nav nav-tabs"><!-- 加了tab之后在笔记本的chrome下高度上会出现1个像素的滚动条，ie和firefox不会-->
     <li><a href="#about" data-toggle="tab">about</a></li>
     <li><a href="#game" data-toggle="tab">game</a></li>
@@ -112,7 +68,7 @@
             <div class="col-lg-10 pull-right" data-target="#mynav" data-spy="scroll">
                 <h2 id="one">游戏基本介绍</h2>
                 <p>
-                    2048以一款流行的手机app游戏。相信很多人都曾执着于这个神奇的数字！本程序用网页的形式实现了2048的应用，
+                    2048一款流行的手机app游戏。相信很多人都曾执着于这个神奇的数字！本程序用网页的形式实现了2048的应用，
                     并进行了一定的扩展。
                     首先介绍一下大家熟悉的2048的基本规则：<br/>
                     <ol>
@@ -131,17 +87,25 @@
 
                 <h2 id="two">最终设想</h2>
                 <p>
-                    如果是简单的2048，相信大家已经玩腻了。而我要做的2048是可以任意搭配规则，设置主题，甚至联机pk竞技的。<br/>
+                    如果是简单的2048，相信大家已经玩腻了。而我要做的2048是可以<strong>任意搭配规则，设置主题，甚至联机pk竞技的。</strong><br/>
                     下面介绍一下我的最终设想：
                     <h3>1、提供规则，难度选择</h3>
                         基础的规则大家应该都清楚，但是人们习惯新鲜变化的事物，有点变化总是好的，不会那么容易腻。
-                    所以在规则上可以进行调整，比如数字合并时可以级联合并，随机生成2或者4的概率可以自由选择，
-                    甚至可以有一定概率生成8--2048都可以啊。移动可以用方向键，也可以用WASD，WASD的移动代表两次移动。
-                    比如按W代表按了两次Up。还有哪些可变规则随时想到都可以加入供选择，这样就不再那么单一了。
-                    <h3>2、主题</h3>
+                    所以在规则上可以进行调整，比如:
+                <ul>
+                    <li>数字合并时可以级联合并</li>
+                    <li>随机生成2或者4的概率可以自由选择,甚至可以有一定概率生成8--2048都可以啊</li>
+                    <li>移动可以用方向键，也可以用WASD，WASD的移动代表两次移动,比如按W代表按了两次Up.</li>
+                    <li>。。。。。。</li>
+                </ul>
+                    还有哪些可变规则随时想到都可以加入供选择，这样就不再那么单一了。
+                </p>
+                    <h3><b>2、主题</b></h3>
+                <p>
                         这是我所设想的可玩性最好的一点了。据我的游戏经历，一般的游戏都会有一些奖励性触发机制，比如小霸王上的游戏
                     ，每到一个关卡，背景音乐，画面效果都会改变；又比如传统打怪升级，
-                    技能越来越炫，每发一个技能，会触发一个动画效果，越强大的技能效果越绚丽。</p>
+                    技能越来越炫，每发一个技能，会触发一个动画效果，越强大的技能效果越绚丽。
+                </p>
                 <p>那么在2048也可以体现这一点。
                     最直观的实现就是每合并到某个阶段就触发一种效果，这种效果的实现就可以多样化了。在web上可以是一段动画，
                     可以让背景发生变化，可以产生不同的背景音乐等等。而且这些设定我想实现成可装配的，
@@ -161,9 +125,9 @@
 
                 <p>
                         我的另一个打算是把主题开发向web开发者提供一个接口，然后可以让所以人都按照我的接口要求编写自己的创意主题，
-                可以发布到网络上供人下载，下载后可以装配到我的2048当中。这样的话，将会形成一个小的生态圈，主题越来越丰富，可观赏性也会越来越好。<br/>
+                可以发布到网络上供人下载，下载后可以装配到我的2048当中。<strong>这样的话，将会形成一个小的生态圈，主题越来越丰富，可观赏性也会越来越好。</strong><br/>
                         所以最终一个优秀的主题也会是一个单一的程序，就我个人而言，自己目前水平有限，动画制作也没有经验，
-                    所以目前恐怕很难做出很好的主题，只能先简单完成架构，实现一些基本动画。希望有兴趣的同学可以和我合作完成整个小项目。
+                    所以目前恐怕很难做出很好的主题，只能先简单完成架构，实现一些基本动画。<strong>希望有兴趣的同学可以和我合作完成整个小项目</strong>。
                 </p>
                     <h3>3、竞技性</h3>
                 <p>
@@ -174,14 +138,13 @@
                         <li>血条方式：比如用武功秘籍主题，每一个人有一个血条，谁先学会某种武功会触发动画攻击对方，
                             如果对方没有及时学会武功将会受到伤害掉血。谁的血条先掉光谁输。当然这种实现将会很复杂。还需要思考很多问题。这只是个初步想法。</li>
                     </ul>
-                    <br/>
-                    <br/>
 
                 </p>
                 <h2 id="third">当前实现</h2>
                 <p>
                     按照我的最终设想，目前的完成状况是：<br/>
-                    基础规则选择：目前简单了实现了两种规则
+                    <h3>基础规则选择</h3>
+                    目前简单了实现了两种规则
                     <dl>
                         <dt>传统规则</dt>
                         <dd>与原始2048规则相同。</dd>
@@ -189,7 +152,7 @@
                         <dd>带有级联合并</dd>
                     </dl>
 
-                提供主题选择：
+                <h3>提供主题选择</h3>
                 <dl>
                     <dt>基础数字主题</dt>
                     <dd>数字的变化会触发背景色的渐变</dd>
@@ -207,7 +170,7 @@
                     然后再找个源码看看别人，专家们是怎样实现的，这样对自我的学习很有帮助，因为我最初写这个就是为了学习。
                     可惜时间上一直没有来得及，目前又要参加csdn code上的这个悬赏项目。所以就姑且先用自己的算法。<br/>
                     我说过如果不考虑代码质量，单单实现2048不是很困难（可是我还是用了4个小时才完成，编程基础有些差）。
-                    但是如果把要这个作为一个项目来做，让代码具有更高的可读性，可维护性，可扩展性，然后为游戏添加一些其它增强功能，
+                    但是如果把要这个作为一个项目来做，让代码具有更高的可读性，可维护性，可扩展性，可响应性，然后为游戏添加一些其它增强功能，
                     让其变成可装配的，甚至还要考虑性能，模块化，插件化，mvc的结构化，单元测试和工程化项目构建，那么完成这样一个项目就不再是那么简单了。<br/>
                     由于时间问题，加上本人所学知识有限，本应用目前的实现离成为一个完整规范的项目还有很远。当前算是第一版，采用的技术有：
                     <dl>
@@ -253,34 +216,61 @@
                 <h2>目前的问题</h2>
                     目前整个代码的设计，类的划分，模块的划分不是很合理，还要再仔细研究下相关设计模式的知识，在重构中进行调整。
                 整体架构已经完成，但主题方面太简单。
-                由于时间关系，代码质量不高，缺乏注释和优化。同时也没有进行严格的测试，还请见谅。
+                由于时间关系，代码质量不高，缺乏注释和优化。同时也没有进行全面严格的测试，还有浏览器兼容性问题，只在chrome下测试过，还请见谅。
             </div>
         </div>
 
     </div>
     <div class="tab-pane fade" id="author">
         <div class="container">
-            我是一个小小的程序员，目前在读研阶段，即将毕业。虽然学过c,c++,c#,java，却对js情有独钟；虽然一直在用的是DB2，却对mongodb一见钟情；
-            虽然做过.net和j2ee,却莫名其妙的更喜欢node；最近一年实习之余，自学了前端相关各方面技术，个人更偏重前端。
+            <p>我是一个小小的程序员，目前在读研阶段，即将毕业。虽然学过c,c++,c#,java，却对js情有独钟；虽然一直在用的是DB2，却对mongodb一见钟情；
+            虽然做过.net和j2ee,却莫名其妙的更喜欢node；最近一年实习之余，自学了前端相关各方面技术，行走在通往全端全栈的道路上。
+            </p>
+            <p>
+                刚刚参加完中国js开发者大会-杭js，见识了很多大牛的风采，和偶像朴灵以及James大神合了影。他们才是我心目中真正的程序员，是我追逐和超越的目标。
+                第一次参加这种大会，让我大开眼界，要消化吸收的东西很多，玉伯提到的时间管理，知识管理，梦想管理，注重output而非input；
+                赫门台湾范的诙谐幽默和令人耳目一新的前后端分离已经让他成为了我的又一偶像；比我还小两岁的郭宇告诉你如果进行你的开源项目；严清老师的异步库；
+                国外程序员的编程素养……等等太多东西值得思考总结，会写成博客发布，在这里只希望大家以后有机会能参加js大会，真的很棒，很赞！
+            </p>
         </div>
 
     </div>
-    <div class="container tab-pane fade in active" id="game">
-        <div class="row">
-            <div class="col-md-1"></div>
+    <div class="container tab-pane fade in active " id="game">
+        <div class="row" style="font-size: 14px;line-height: 1.25em;">
+            <div class="col-md-2">
+                <h3>你的2048！</h3>
+            </div>
 
             <div class="col-md-10">
-                <h1>打造自己的2048！</h1>
+
+                <p style="width:550px;text-align: center">2->4->8->16->32->64->128->256->512->1024->2048</p>
+                <p style="width:550px;text-align: center" id="whichTheme">你的主题选择</p>
             </div>
-            <div class="col-md-1">mengying</div>
         </div>
         <div class="row">
-            <div class="col-md-1">xuhuiyuan</div>
+            <div class="col-md-2">
+                <div class="panel panel-default" style="background-color: rgba(255,255,255,0.3);font-size: 14px;line-height: 1.25em;">
+                    <div class="panel-heading">说明</div>
+
+                    <div class="panel-body">
+                            请在chrome浏览器下运行<br/>
+                            右侧进行基础配置后，<br/>
+                            点击启动按钮，<br/>
+                            然后用WASD进行方向控制！
+
+                    </div>
+                    <div class="panel-footer">
+                        <div style="font-size: 25px">得分:<span id="score">0</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
 
             <div class="col-md-10">
                 <div class="row">
                     <div class="col-md-8">
-                        <div class="panel " style="background-color: rgba(0,0,0,0.3)">
+                        <div class="panel " style="background-color: rgba(255,255,255,0.3);font-size: 14px;line-height: 1.25em;">
                             <table  cellspacing="0" collapse="0">
                                 <tr>
                                     <td></td>
@@ -310,10 +300,16 @@
                         </div>
                     </div>
                     <div class="col-md-4">
-                        <div class="panel panel-default " style="background-color: rgba(255,255,255,0.3)">
+                        <div class="panel panel-default " style="background-color: rgba(255,255,255,0.3);font-size: 14px;line-height:1.25em;">
                             <div class="panel-heading">游戏设置</div>
 
                             <div class="panel-body">
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <button type="button" class="btn btn-success" id="start" data-start-text="重新启动">启动</button>
+
+                                    </div>
+                                </div>
 
                                 <div class="row">
                                     <div class="col-lg-12">
@@ -327,7 +323,7 @@
                                 <div class="row">
                                     <div class="col-lg-12">
                                         选择基本主题：
-                                        <select id="theme">
+                                        <select name="theme" id="theme">
                                             <option value="num">原始数字</option>
                                             <option value="char">英文字母</option>
                                             <option value="travel">旅游风景</option>
@@ -382,30 +378,20 @@
                                 </div>
                                 <div class="row">
                                     <div class="col-lg-12">
-
-                                        <button type="button" class="btn btn-default" id="start" data-start-text="重新启动">启动</button>
-                                        <button type="button" class="btn btn-default" data-toggle="modal" data-target="#resetModal" id="reset">恢复默认
+                                        <button type="button" class="btn btn-default" data-toggle="modal" data-target="#resetModal" id="reset">样式恢复默认
                                         </button>
 
                                     </div>
                                 </div>
 
                             </div>
-                            <div class="panel-footer">谢谢</div>
+
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="col-md-1">mengying</div>
         </div>
-        <div class="row">
-            <div class="col-md-1">xuhuiyuan</div>
 
-            <div class="col-md-10">
-                disanhang
-            </div>
-            <div class="col-md-1">mengying</div>
-        </div>
         <div class="modal" id="resetModal">
             <div class="modal-dialog">
                 <div class="modal-content">
@@ -416,13 +402,13 @@
                         <h3 class="modal-title">my 2048</h3>
                     </div>
                     <div class="modal-body">
-                        <span>是否恢复到默认设置</span>
+                        <span>确定把样式恢复到默认设置？</span>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-default" >
+                        <button type="button" id="resetYes" class="start btn btn-success" >
                             是
                         </button>
-                        <button type="button" class="btn btn-default" >
+                        <button type="button" id="resetNo" class="btn btn-default" >
                             否
                         </button>
                     </div>
@@ -495,6 +481,33 @@
     });
     seajs.use(["2048All","config"],function(my2048,config){
         window.onload=function(){
+             images = [];
+            function loadImage(url,callback){
+                var img = new Image();
+                img.src = url;
+                if(img.complete){
+                    callback(img);
+                }
+                img.onload=function(){
+                    img.onload = null;
+                    callback(img);
+                }
+            }
+            function callback(img){
+                images.push(img);
+            }
+            loadImage("static/image/scene/btq.jpg",callback);
+            loadImage("static/image/scene/dq.jpg",callback);
+            loadImage("static/image/scene/fhs.jpg",callback);
+            loadImage("static/image/scene/hs.jpg",callback);
+            loadImage("static/image/scene/jzg.jpg",callback);
+            loadImage("static/image/scene/lj.jpg",callback);
+            loadImage("static/image/scene/lmsk.jpg",callback);
+            loadImage("static/image/scene/ts.jpg",callback);
+            loadImage("static/image/scene/xixi.jpg",callback);
+            loadImage("static/image/scene/tt.jpg",callback);
+            loadImage("static/image/scene/dl.jpg",callback);
+
             $(".pick-a-color").pickAColor({
                 showSpectrum             : true,
                 showSavedColors          : true,
@@ -523,7 +536,26 @@
                 $("table").css("border-width",$(this).val());
                 $("td").css("border-width",$(this).val());
             });
+            $("#theme").on("change",function(){
+                var value = $("#theme").val();
+                if(value=="num"){
+                    $("#whichTheme").html("2->4->8->16->32->64->128->256->512->1024->2048");
+                }else if(value=="char"){
+                    $("#whichTheme").html("a->b->c->d->e->f->g->h->i->j->k");
+                }else{
+                    $("#whichTheme").html("趵突泉->九寨沟->丽江->泰山->断桥->黄山->龙门石窟->西溪湿地->凤凰山->大理->天堂");
+                }
 
+            });
+            $("#resetYes").on("click",function(){
+                $("table").css("border",config.tableBorder);
+                $("td").css("border",config.tdBorder);
+                $("body").css("background-color",config.bgColor);
+                $("#resetModal").modal("hide");
+            });
+            $("#resetNo").on("click",function(){
+                $("#resetModal").modal("hide");
+            });
             $("#start").on("click",function(){
                 $("#tipModal").modal({
                     backdrop:true,
@@ -534,6 +566,7 @@
                     var theme =$("#theme").val();
                     config.setStrategy(strategy);
                     config.setTheme(theme);
+                    config.setOldMax(2);
                     my2048.my2048();
                 });
                 $(this).button("start");

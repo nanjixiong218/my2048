@@ -57,7 +57,8 @@ define(function(require,exports,module){
         name:"char",
         data:new Map(),
         fillData:function(){
-            this.data.put("2",{text:"a",func:function(){}});
+            this.data.put("2",{text:"a",func:function(){
+            }});
             this.data.put("4",{text:"b",func:function(){
                 //css3d动画
                 var span = $("<span >"+this.text+"</span>").addClass("pop1");
@@ -66,26 +67,29 @@ define(function(require,exports,module){
                     $("#pop").html("");
                     $("#pop").hide();
                 },4000);
+
             }});
             this.data.put("8",{text:"c",func:function(){
                 //canvas动画
-
+                var canvasDiv = document.getElementById("canvasDiv");
                 var canvas = document.getElementById("myCanvas");
                 var cxt = canvas.getContext("2d");
-                canvas.style.display="block";
-                cxt.font="300px Times New Roman";
-
+                canvasDiv.style.display="block";
+                cxt.font="200px Times New Roman";
+                var width=0;
+                var height=canvas.height/2;
                 var interval = setInterval(function(that){
                     return function draw(){
-                        cxt.clearRect(0,0,canvas.width,canvas.height);
-                        cxt.fillText(that.text,Math.random()*1000|0,Math.random()*600|0);
+                        // cxt.clearRect(0,0,canvas.width,canvas.height);
+                        cxt.fillText(that.text,width++,height++);
                     }
                 }(this),30);
 
                 setTimeout(function(){
                     clearInterval(interval);
-                    canvas.style.display="none";
+                    canvasDiv.style.display="none";
                 },4000);
+
 
             }})
             this.data.put("16",{text:"d",func:function(){
@@ -102,9 +106,10 @@ define(function(require,exports,module){
                 setTimeout(function(){
                     $("#pop").html("");
                     $("#pop").hide();
-                },4000);
+                },5000);
             }});
             this.data.put("32",{text:"e",func:function(){
+                //css3d动画
                 var span = $("<span >"+this.text+"</span>").addClass("pop2");
                 $("#pop").append(span).show();
                 setTimeout(function(){
@@ -112,13 +117,98 @@ define(function(require,exports,module){
                     $("#pop").hide();
                 },4000);
             }});
-            this.data.put("64",{text:"f",func:function(){}});
-            this.data.put("128",{text:"g",func:function(){}});
-            this.data.put("256",{text:"h",func:function(){}});
-            this.data.put("512",{text:"i",func:function(){}});
-            this.data.put("1024",{text:"j",func:function(){}});
-            this.data.put("2048",{text:"k",func:function(){}});
-            this.data.put("4096",{text:"l",func:function(){}});
+            this.data.put("64",{text:"f",func:function(){
+                //jquery动画
+                var span = $("<span >"+this.text+"</span>").css({
+                    "position":"relative",
+                    "left":"0",
+                    "top":"0",
+                    "width":"100px",
+                    "height":"100px",
+                    "font-size":"200px"
+                }).animate({left:"200px"},3000,"easeInElastic").animate({left:"0px"},3000,"easeOutElastic");
+                $("#pop").append(span).show();
+                setTimeout(function(){
+                    $("#pop").html("");
+                    $("#pop").hide();
+                },8000);
+            }});
+            this.data.put("128",{text:"g",func:function(){
+                //canvas动画
+                var canvasDiv = document.getElementById("canvasDiv");
+                var canvas = document.getElementById("myCanvas");
+                var cxt = canvas.getContext("2d");
+                canvasDiv.style.display="block";
+                cxt.font="200px Times New Roman";
+
+                var interval = setInterval(function(that){
+                    return function draw(){
+                        cxt.clearRect(0,0,canvas.width,canvas.height);
+                        cxt.fillText(that.text,Math.random()*canvas.width|0,Math.random()*canvas.height|0);
+                    }
+                }(this),30);
+
+                setTimeout(function(){
+                    clearInterval(interval);
+                    canvasDiv.style.display="none";
+                },4000);
+            }});
+            this.data.put("256",{text:"h",func:function(){
+                //css3d动画
+                var span = $("<span >"+this.text+"</span>").addClass("pop3");
+                $("#pop").append(span).show();
+                setTimeout(function(){
+                    $("#pop").html("");
+                    $("#pop").hide();
+                },4000);
+            }});
+            this.data.put("512",{text:"i",func:function(){
+                //css3d动画
+                var span = $("<span >"+this.text+"</span>").addClass("pop4");
+                $("#pop").append(span).show();
+                setTimeout(function(){
+                    $("#pop").html("");
+                    $("#pop").hide();
+                },5000);
+            }});
+            this.data.put("1024",{text:"j",func:function(){
+                var span = $("<span >"+this.text+"</span>").addClass("pop5");
+                $("#pop").append(span).show();
+                setTimeout(function(){
+                    $("#pop").html("");
+                    $("#pop").hide();
+                },4000);
+            }});
+            this.data.put("2048",{text:"k",func:function(){
+                //canvas动画
+                var canvasDiv = document.getElementById("canvasDiv");
+                var canvas = document.getElementById("myCanvas");
+                var cxt = canvas.getContext("2d");
+                canvasDiv.style.display="block";
+                cxt.font="20px Georgia";//字体size有问题啊，我擦！
+                var gradient=cxt.createLinearGradient(0,0,canvas.width,0);
+                gradient.addColorStop("0","magenta");
+                gradient.addColorStop("0.5","blue");
+                gradient.addColorStop("1.0","red");
+                size="1";
+                cxt.fillStyle=gradient;
+                cxt.fillText("恭喜你，大神，通关成功了！",20,canvas.height/2|0);
+                /*
+                 var interval = setInterval(function(that){
+                 return function draw(){
+                 cxt.clearRect(0,0,canvas.width,canvas.height);
+                 cxt.font=size+"px Times New Roman";
+                 size+=0.1;
+                 cxt.fillText("恭喜你，大神，通关成功了！",20,canvas.height/2|0);
+                 }
+                 }(this),400);
+                 */
+
+                setTimeout(function(){
+                    canvasDiv.style.display="none";
+                },4000);
+
+            }});
         }
     }
     charTheme.fillData();
@@ -136,8 +226,36 @@ define(function(require,exports,module){
             this.data.put("256",{text:"256",func:function(){$("body").css("background-color","#ff2e12")}});
             this.data.put("512",{text:"512",func:function(){$("body").css("background-color","#ff76bc")}});
             this.data.put("1024",{text:"1024",func:function(){$("body").css("background-color","#e064b7")}});
-            this.data.put("2048",{text:"2048",func:function(){$("body").css("background-color","#aa40ff")}});
-            this.data.put("4096",{text:"4096",func:function(){$("body").css("background-color","#569ce3")}});
+            this.data.put("2048",{text:"2048",func:function(){
+                $("body").css("background-color","#aa40ff");
+                //canvas动画
+                var canvasDiv = document.getElementById("canvasDiv");
+                var canvas = document.getElementById("myCanvas");
+                var cxt = canvas.getContext("2d");
+                canvasDiv.style.display="block";
+                cxt.font="20px Georgia";//字体size有问题啊，我擦！
+                var gradient=cxt.createLinearGradient(0,0,canvas.width,0);
+                gradient.addColorStop("0","magenta");
+                gradient.addColorStop("0.5","blue");
+                gradient.addColorStop("1.0","red");
+                size="1";
+                cxt.fillStyle=gradient;
+                cxt.fillText("恭喜你，大神，通关成功了！",20,canvas.height/2|0);
+                /*
+                 var interval = setInterval(function(that){
+                 return function draw(){
+                 cxt.clearRect(0,0,canvas.width,canvas.height);
+                 cxt.font=size+"px Times New Roman";
+                 size+=0.1;
+                 cxt.fillText("恭喜你，大神，通关成功了！",20,canvas.height/2|0);
+                 }
+                 }(this),400);
+                 */
+
+                setTimeout(function(){
+                    canvasDiv.style.display="none";
+                },4000);
+            }});
         }
     }
     numTheme.fillData();
@@ -154,9 +272,38 @@ define(function(require,exports,module){
             this.data.put("128",{text:"龙门石窟",func:function(){document.body.style.backgroundImage="url('static/image/scene/lmsk.jpg')"}});
             this.data.put("256",{text:"西溪湿地",func:function(){document.body.style.backgroundImage="url('static/image/scene/xixi.jpg')"}});
             this.data.put("512",{text:"凤凰山",func:function(){document.body.style.backgroundImage="url('static/image/scene/fhs.jpg')"}});
-            this.data.put("1024",{text:"",func:function(){document.body.style.backgroundImage="url('static/image/scene/dq.jpg')"}});
-            this.data.put("2048",{text:"2048",func:function(){document.body.style.backgroundImage="url('static/image/scene/ts.jpg')"}});
-            this.data.put("4096",{text:"4096",func:function(){document.body.style.backgroundImage="url('static/image/scene/ts.jpg')"}});
+            this.data.put("1024",{text:"大理",func:function(){document.body.style.backgroundImage="url('static/image/scene/dl.jpg')"}});
+            this.data.put("2048",{text:"天堂",func:function(){
+                document.body.style.backgroundImage="url('static/image/scene/tt.jpg')";
+
+                //canvas动画
+                var canvasDiv = document.getElementById("canvasDiv");
+                var canvas = document.getElementById("myCanvas");
+                var cxt = canvas.getContext("2d");
+                canvasDiv.style.display="block";
+                cxt.font="20px Georgia";//字体size有问题啊，我擦！
+                var gradient=cxt.createLinearGradient(0,0,canvas.width,0);
+                gradient.addColorStop("0","magenta");
+                gradient.addColorStop("0.5","blue");
+                gradient.addColorStop("1.0","red");
+                size="1";
+                cxt.fillStyle=gradient;
+                cxt.fillText("恭喜你，大神，通关成功了！",20,canvas.height/2|0);
+                /*
+                 var interval = setInterval(function(that){
+                 return function draw(){
+                 cxt.clearRect(0,0,canvas.width,canvas.height);
+                 cxt.font=size+"px Times New Roman";
+                 size+=0.1;
+                 cxt.fillText("恭喜你，大神，通关成功了！",20,canvas.height/2|0);
+                 }
+                 }(this),400);
+                 */
+
+                setTimeout(function(){
+                    canvasDiv.style.display="none";
+                },4000);
+            }});
         }
     }
     travelTheme.fillData();

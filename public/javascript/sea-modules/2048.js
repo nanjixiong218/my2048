@@ -21,14 +21,15 @@ define(function(require,exports,modules){
             var keycode = event.which?event.which:event.keyCode?event.keyCode:event.charCode;
 
             switch(keycode){
-                case 37:
+                case 65:
                     config.setDirection("left");config.strategy.left(t);break;
-                case 38:
+                case 87:
                     config.setDirection("up");config.strategy.up(t);break;
-                case 39:
+                case 68:
                     config.setDirection("right");config.strategy.right(t);break;
-                case 40:
+                case 83:
                     config.setDirection("down");config.strategy.down(t);break;
+                default :return;
             }
             fill.fill(t,table);
             if(config.strategy.isChanged(t,config.oldT)){
