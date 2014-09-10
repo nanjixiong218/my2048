@@ -1,5 +1,9 @@
 /**
- * Created by Administrator on 2014/6/10.
+ * 这里封装了fill方法用来二维数组t来填充页面table。
+ * 同时，在fill之后对score的计算已经是否进行动画和动画的触发也写在fill当中
+ * 以后有待分离。
+ * 模块暴露接口有两个，一个fill
+ * 还有一个setCoorTest，这个接口是产生随机数的时候填充某个单元格用的
  */
 define(function(require,exports,module){
     var config = require("config");
@@ -19,6 +23,7 @@ define(function(require,exports,module){
                 var num = t[i][j];
                 var pow = Math.log(num)/Math.log(2);
                 if(t[i][j]!=0){
+                    //textContent这个属性肯定兼容性有问题TODO
                     target.textContent=theme.data.get(t[i][j]).text;
                     target.style.backgroundColor=colors[pow];
                 }else{
@@ -66,7 +71,7 @@ define(function(require,exports,module){
     /**
      * 获取最大的数，返回值是个对象，包括这个最大的数和它出现的次数
      * @param t
-     * @returns {{num: number, count: number}}
+     * @returns {{num: number, count: number}}//count暂时没用到，留给以后扩展程序功能时用
      */
     function getMax(t){
         var result = 0;

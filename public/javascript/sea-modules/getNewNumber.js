@@ -1,15 +1,16 @@
 /**
- * Created by Administrator on 2014/6/10.
+ * 本模块主要用于产生一个新的数字2，或者不同主题对应的初级设定
+ * 本模块依赖fill模块的setCoorTest方法（这样的设计有待改进，没有必要把setCoorTest写在fill模块中，
+ * 直接写在此模块中也可以啊！这种模块功能的划分，依赖还需要思考！）
+ * 同时产生新的数字的时候，判断是否游戏结束也在此模块中
+ * 模块暴露接口有getNewNum和isDead
  */
 
 define(function(require,exports,module){
-    /**
-     * 获得一个随机空位置
-     * 返回一个coor，二维数组位置
-     */
     var fill = require("fill");
     var config = require("config");
-    function needNum(t){//这个函数是判断，在移动方向上是否有已经满的行或列。如果有就不增加新数字。/先不用这个方法
+    function needNum(t){//这个函数是判断，在移动方向上是否有已经满的行或列。如果有就不增加新数字。
+    // 取消这个方法，用isChanged来判断是否需要产生新数字，所以config.direction暂时也不需要了
         var dir = config.direction;
         switch(dir){
             case"up":if(isVerticalFull()){return false};break;
@@ -49,8 +50,13 @@ define(function(require,exports,module){
             return false;
         }
     }
+    /**
+     * 获得一个随机空位置
+     * 如果有空位置，返回一个coor，二维数组位置
+     * 否则返回false
+     */
     function getRandomPosition(t){
-
+        //empty保存未空的td的索引，索引从0--15,之所以用总索引数而不是二维数组，因为要用random
         var empty=[];
         for(var i=0;i<t.length;i++){
             var row = t[i];
@@ -92,44 +98,38 @@ define(function(require,exports,module){
      *
      */
     function getNewNum(t,table){
-
-
         var coor = getRandomPosition(t);
         if(coor){
             fill.setCoorTest(t,table,coor,2);
-        }else{
-            if(isDead(t)){
-                alert("you are a pig!");
-            }
-
         }
     }
     function isDead(t){//这个判断死亡的算法好垃圾啊感觉，需要优化。
-        for(var i= t.length-1;i>=0;i--){
-            for(var j= t.length-1;j>=0;j--){
-                if(j!=0&&i!=0){
-                    if(t[i][j]==t[i-1][j]||t[i][j]==t[i][j-1]){
-                        return false;
-                    }
+        if(!getRandomPosition(t)){//判满
+            for(var i= t.length-1;i>=0;i--){//判死
+                for(var j= t.length-1;j>=0;j--){
+                    if(j!=0&&i!=0){
+                        if(t[i][j]==t[i-1][j]||t[i][j]==t[i][j-1]){
+                            return false;
+                        }
 
-                }else if(j==0&&i!=0){
-                    if( t[i][j]==t[i-1][j]){
-                        return false;
+                    }else if(j==0&&i!=0){
+                        if( t[i][j]==t[i-1][j]){
+                            return false;
+                        }
+                    }else if(j!=0&&i==0){
+                        if(t[i][j]==t[i][j-1]){
+                            return false;
+                        }
+                    }else{
+                        return true;
                     }
-                }else if(j!=0&&i==0){
-                    if(t[i][j]==t[i][j-1]){
-                        return false;
-                    }
-                }else{
-                    return true;
                 }
             }
-
+        }else{
+            return false;
         }
-        return true;
 
     }
-
     exports.getNewNum = getNewNum;
     exports.isDead = isDead;
 });

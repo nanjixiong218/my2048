@@ -1,5 +1,8 @@
 /**
- * Created by Administrator on 2014/6/9.
+ * 本模块是2048的移动算法
+ * 和Theme一样暴露一个Strategy工厂
+ * 每个策略中还写了一个isChanged判断是否产生了移动，今儿进而判断是否需要新生成数字，
+ * 不应该把它划分在这里，需要改进。
  */
 define(function(require,exports,module){
     //var config = require("config");//这样将出现嵌套require，页面直接卡死
@@ -189,7 +192,7 @@ define(function(require,exports,module){
             }
             return false;
         }
-    }
+    };
     var st2 = {
         name:"one",//我女朋友想的算法，没有级联合并问题
         up:function(t){//纵向移动就纵向遍历

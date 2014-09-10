@@ -1,12 +1,16 @@
 /**
- * Created by xu695_000 on 2014/6/12.
+ * 主体模块
+ * 用闭包写了一个Theme对象最为主体工厂，并暴露出去。
+ * Theme暴露了三个接口，getTheme,setTheme和getLength
+ *
  */
 
 define(function(require,exports,module){
-    function Map(){
+    //自己写了一个类似java的Map容器,其实没有必要，js的普通对象就是Map，这里是写着玩的。
+        function Map(){
         this.data = {};
         this.length=this.size();
-    }
+    };
     Map.prototype.put = function (key,value){
         this.data[key] = value;
     };
@@ -48,12 +52,17 @@ define(function(require,exports,module){
                     length++;
                 }
             },
-            getLenght:function(){
+            getLength:function(){
                 return length;
             }
         }
     })();
-    charTheme = {
+    //下面都是不同的主题设计，每个主题是一个拥有统一接口的对象。
+    // 每个主题有一个name属性表示主题的名字，
+    // 有一个data属性，是一个Map对象，保存着主题2-2048的文本已经对应动画效果，
+    // 想要写一个主题很容易，只需要换个名字，改变主题的fileData方法即可。
+    // 暴露fillData接口是为了后续提供给开发者开发自己主题的，这样的设计好像不太好，需要仔细思考!可以写一个createTheme的方法。
+    var charTheme = {
         name:"char",
         data:new Map(),
         fillData:function(){
@@ -91,7 +100,7 @@ define(function(require,exports,module){
                 },4000);
 
 
-            }})
+            }});
             this.data.put("16",{text:"d",func:function(){
                 //jquery动画
                 var span = $("<span >"+this.text+"</span>").css({
@@ -180,44 +189,61 @@ define(function(require,exports,module){
                 },4000);
             }});
             this.data.put("2048",{text:"k",func:function(){
-                //canvas动画
                 var canvasDiv = document.getElementById("canvasDiv");
                 var canvas = document.getElementById("myCanvas");
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
                 var cxt = canvas.getContext("2d");
                 canvasDiv.style.display="block";
-                cxt.font="20px Georgia";//字体size有问题啊，我擦！
+                cxt.font="20px Georgia";
                 var gradient=cxt.createLinearGradient(0,0,canvas.width,0);
-                gradient.addColorStop("0","magenta");
-                gradient.addColorStop("0.5","blue");
-                gradient.addColorStop("1.0","red");
-                size="1";
-                cxt.fillStyle=gradient;
-                cxt.fillText("恭喜你，大神，通关成功了！",20,canvas.height/2|0);
-                /*
-                 var interval = setInterval(function(that){
-                 return function draw(){
-                 cxt.clearRect(0,0,canvas.width,canvas.height);
-                 cxt.font=size+"px Times New Roman";
-                 size+=0.1;
-                 cxt.fillText("恭喜你，大神，通关成功了！",20,canvas.height/2|0);
-                 }
-                 }(this),400);
-                 */
-
+                gradient.addColorStop(0,"magenta");
+                gradient.addColorStop(0.5,"blue");
+                gradient.addColorStop(1.0,"red");
+                cxt.textAlign = "center";
+                cxt.textBaseline = "middle";
+                cxt.fillStyle = gradient;
+                var size = 20;
+                var interval = setInterval(function (){
+                        cxt.clearRect(0,0,canvas.width,canvas.height);
+                        cxt.font=size+"px Times New Roman";
+                        size+=0.1;
+                        cxt.fillText("恭喜你，大神，通关成功了！",canvas.width/2|0,canvas.height/2|0);
+                    }
+                    ,1);
                 setTimeout(function(){
+                    clearInterval(interval);
                     canvasDiv.style.display="none";
                 },4000);
 
             }});
         }
-    }
+    };
     charTheme.fillData();
-    numTheme = {
+    var numTheme = {
         name:"num",
         data:new Map(),
         fillData:function(){
-            this.data.put("2",{text:"2",func:function(){$("body").css("background-color","white")}});
-            this.data.put("4",{text:"4",func:function(){$("body").css("background-color","#60a917")}});
+            this.data.put("2",{text:"2",func:function(){
+                $("body").css("background-color","#aa40ff");
+                //canvas动画
+                var canvasDiv = document.getElementById("canvasDiv");
+                var canvas = document.getElementById("myCanvas");
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+                var cxt = canvas.getContext("2d");
+                canvasDiv.style.display="block";
+                cxt.font="20px Georgia";
+                var gradient=cxt.createLinearGradient(0,0,canvas.width,0);
+                gradient.addColorStop("0","magenta");
+                gradient.addColorStop("0.5","blue");
+                gradient.addColorStop("1.0","red");
+                cxt.fillStyle = gradient;
+                cxt.fillText("恭喜你，大神，通关成功了！",20,canvas.height/2|0);
+            }});
+            this.data.put("4",{text:"4",func:function(){
+                $("body").css("background-color","#00cf3f");
+            }});
             this.data.put("8",{text:"8",func:function(){$("body").css("background-color","#00c13f")}});
             this.data.put("16",{text:"16",func:function(){$("body").css("background-color","#1faeff")}});
             this.data.put("32",{text:"32",func:function(){$("body").css("background-color","#56c5ff")}});
@@ -227,37 +253,37 @@ define(function(require,exports,module){
             this.data.put("512",{text:"512",func:function(){$("body").css("background-color","#ff76bc")}});
             this.data.put("1024",{text:"1024",func:function(){$("body").css("background-color","#e064b7")}});
             this.data.put("2048",{text:"2048",func:function(){
-                $("body").css("background-color","#aa40ff");
-                //canvas动画
+                $("body").css("background-color","#fa10fc");
+                //通关成功canvas动画
                 var canvasDiv = document.getElementById("canvasDiv");
                 var canvas = document.getElementById("myCanvas");
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
                 var cxt = canvas.getContext("2d");
                 canvasDiv.style.display="block";
-                cxt.font="20px Georgia";//字体size有问题啊，我擦！
+                cxt.font="20px Georgia";
                 var gradient=cxt.createLinearGradient(0,0,canvas.width,0);
-                gradient.addColorStop("0","magenta");
-                gradient.addColorStop("0.5","blue");
-                gradient.addColorStop("1.0","red");
-                size="1";
-                cxt.fillStyle=gradient;
-                cxt.fillText("恭喜你，大神，通关成功了！",20,canvas.height/2|0);
-                /*
-                 var interval = setInterval(function(that){
-                 return function draw(){
-                 cxt.clearRect(0,0,canvas.width,canvas.height);
-                 cxt.font=size+"px Times New Roman";
-                 size+=0.1;
-                 cxt.fillText("恭喜你，大神，通关成功了！",20,canvas.height/2|0);
-                 }
-                 }(this),400);
-                 */
-
+                gradient.addColorStop(0,"magenta");
+                gradient.addColorStop(0.5,"blue");
+                gradient.addColorStop(1.0,"red");
+                cxt.textAlign = "center";
+                cxt.textBaseline = "middle";
+                cxt.fillStyle = gradient;
+                var size = 20;
+                var interval = setInterval(function (){
+                        cxt.clearRect(0,0,canvas.width,canvas.height);
+                        cxt.font=size+"px Times New Roman";
+                        size+=0.1;
+                        cxt.fillText("恭喜你，大神，通关成功了！",canvas.width/2|0,canvas.height/2|0);
+                    }
+                    ,1);
                 setTimeout(function(){
+                    clearInterval(interval);
                     canvasDiv.style.display="none";
                 },4000);
             }});
         }
-    }
+    };
     numTheme.fillData();
     var travelTheme = {
         name:"travel",
@@ -276,36 +302,35 @@ define(function(require,exports,module){
             this.data.put("2048",{text:"天堂",func:function(){
                 document.body.style.backgroundImage="url('static/image/scene/tt.jpg')";
 
-                //canvas动画
                 var canvasDiv = document.getElementById("canvasDiv");
                 var canvas = document.getElementById("myCanvas");
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
                 var cxt = canvas.getContext("2d");
                 canvasDiv.style.display="block";
-                cxt.font="20px Georgia";//字体size有问题啊，我擦！
+                cxt.font="20px Georgia";
                 var gradient=cxt.createLinearGradient(0,0,canvas.width,0);
-                gradient.addColorStop("0","magenta");
-                gradient.addColorStop("0.5","blue");
-                gradient.addColorStop("1.0","red");
-                size="1";
-                cxt.fillStyle=gradient;
-                cxt.fillText("恭喜你，大神，通关成功了！",20,canvas.height/2|0);
-                /*
-                 var interval = setInterval(function(that){
-                 return function draw(){
-                 cxt.clearRect(0,0,canvas.width,canvas.height);
-                 cxt.font=size+"px Times New Roman";
-                 size+=0.1;
-                 cxt.fillText("恭喜你，大神，通关成功了！",20,canvas.height/2|0);
-                 }
-                 }(this),400);
-                 */
-
+                gradient.addColorStop(0,"magenta");
+                gradient.addColorStop(0.5,"blue");
+                gradient.addColorStop(1.0,"red");
+                cxt.textAlign = "center";
+                cxt.textBaseline = "middle";
+                cxt.fillStyle = gradient;
+                var size = 20;
+                var interval = setInterval(function (){
+                        cxt.clearRect(0,0,canvas.width,canvas.height);
+                        cxt.font=size+"px Times New Roman";
+                        size+=0.1;
+                        cxt.fillText("恭喜你，大神，通关成功了！",canvas.width/2|0,canvas.height/2|0);
+                    }
+                    ,1);
                 setTimeout(function(){
+                    clearInterval(interval);
                     canvasDiv.style.display="none";
                 },4000);
             }});
         }
-    }
+    };
     travelTheme.fillData();
     Theme.addTheme(charTheme);
     Theme.addTheme(numTheme);

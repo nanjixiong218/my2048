@@ -9,8 +9,6 @@ define(function(require,exports,modules){
     function my2048(){
         var table = document.getElementsByTagName("table")[0];
         var t = [];//table对应的二维数组，其中记录了table对应位置的值，这样方便访问，不需要总访问dom
-        var i=0;
-        var j=0;
         initT();
         fill.fill(t,table);
         newNum.getNewNum(t,table);
@@ -19,25 +17,29 @@ define(function(require,exports,modules){
             var event = event?event:window.event;
             var target = event.target?event.target:event.srcElement;
             var keycode = event.which?event.which:event.keyCode?event.keyCode:event.charCode;
-
             switch(keycode){
                 case 65:
-                    config.setDirection("left");config.strategy.left(t);break;
+                    config.strategy.left(t);break;
                 case 87:
-                    config.setDirection("up");config.strategy.up(t);break;
+                    config.strategy.up(t);break;
                 case 68:
-                    config.setDirection("right");config.strategy.right(t);break;
+                    config.strategy.right(t);break;
                 case 83:
-                    config.setDirection("down");config.strategy.down(t);break;
+                    config.strategy.down(t);break;
                 default :return;
             }
+            //反映到页面上
             fill.fill(t,table);
+            //判断是否需要产生新数据，如果移动后和移动前状态改变了，需要产生新数据，如果没改变就什么都不执行
+            //isChanged划分在了strategy模块中，isDead划分在了newNum模块中
+            //这种分块设计的很不好呀！
             if(config.strategy.isChanged(t,config.oldT)){
                 newNum.getNewNum(t,table);
                 config.setOldT(t);
             }else{
+                //这里进行判死，在死了以后，玩家继续按键会不断提醒游戏结束。
                 if(newNum.isDead(t)){
-                    alert("you are a pig!");
+                    alert("你已经输了，重新开始吧！");
                 }
             };
         }
@@ -47,11 +49,10 @@ define(function(require,exports,modules){
          * 初始化t
          */
         function initT(){
-            for(i=0;i<table.rows.length;i++){
+            for( var i = 0,len = table.rows.length ;i < len ;i++){
                 var row = table.rows[i];
-
                 var tr = [];
-                for(j=0;j<row.cells.length;j++){
+                for(var j = 0,len = row.cells.length;j < len;j++){
                     var col = row.cells[j];
                     tr.push(0);
                 }
