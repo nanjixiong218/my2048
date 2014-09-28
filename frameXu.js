@@ -88,7 +88,7 @@ function createServerFunction() {
                     fs.readFile(realPath, "binary", function (err, file) {
 
                         if (err) {
-                            res.writeHead(500, {
+                            res.writeHead(500, {//500是什么错误
                                 'Content-Type': 'text/plain'
                             });
 
@@ -134,7 +134,7 @@ function createServerFunction() {
                 }
             }
             var layoutContent = cache[layout] || '<%-body%>';//如果没有指定布局文件，那么布局文件直接就是这个字符串
-            var text = ''
+            var text = '';
             try {
                 text = renderlayout(layoutContent, viewname);
             } catch (e) {
