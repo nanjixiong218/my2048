@@ -1,6 +1,6 @@
 #应用名称：你的2048
 
-#moPaas的url：http://my2048.sturgeon.mopaas.com/
+#演示地址：http://www.shadowvip.com/static/2048.html
 
 #详细说明以及应用场景
 本项目是一个单页面游戏，所以没有什么应用场景，放松心情的休闲时间进行的娱乐而已。
