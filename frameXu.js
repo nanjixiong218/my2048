@@ -74,10 +74,9 @@ function createServerFunction() {
         if(ext=="unknown"){
             route();
         }else{
-            path.exists(realPath, function (exists) {
-                console.log(exists);
+            fs.access(realPath, function (err) {
 
-                if (!exists) {
+                if (err) {
                     res.writeHead(404, {
                         'Content-Type': 'text/plain'
                     });
